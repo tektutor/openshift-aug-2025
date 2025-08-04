@@ -250,3 +250,20 @@ docker build -t mycustom-ubuntu:1.0 .
 docker images | grep mycustom
 ```
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/7b7c2fb2-6b18-4e7d-9a2d-2c5007f3d4e2" />
+
+## Lab - Let's stop a running container
+Let's create couple of ubuntu containers in the background(daemon) mode
+```
+docker run -dit --name ubuntu1-jegan --hostname ubuntu1-jegan ubuntu:latest ubuntu:latest /bin/bash
+docker run -dit --name ubuntu2-jegan --hostname ubuntu2-jegan ubuntu:latest ubuntu:latest /bin/bash
+```
+
+List the running containers
+```
+docker ps
+```
+
+Stop the ubuntu1-jegan container
+```
+
+```
