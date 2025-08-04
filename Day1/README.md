@@ -179,3 +179,11 @@ su <your-user-name>
 id
 docker images
 ```
+
+## Lab - Download docker image from Docker Hub Remote Registry
+```
+docker images
+docker pull ubuntu:latest
+docker images
+```
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/a782d109-5d2f-4df9-9cea-d4ab2e6e3035" />
