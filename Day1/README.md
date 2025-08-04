@@ -120,3 +120,13 @@
 - containers normally has their on terminal ( bash or shell )
 - certain docker images also comes with pre-installed, pre-configured application ( default application that runs when containers are created )
 </pre>
+
+## Info - Hypervisor High-Level Architecture
+<pre>
+  
+</pre>
+
+## Info - Docker High-Level Architecture
+<pre>
+  
+</pre>
