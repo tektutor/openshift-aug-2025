@@ -274,3 +274,16 @@ docker ps
 ```
 
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/2771e5b1-d4b8-44c9-aad8-ffa9a62ac3d1" />
+
+## Lab - Finding the image details like how many layers each image has got
+```
+docker image inspect ubuntu:latest
+cd ~/openshift-aug-2025
+git pull
+cd Day1/custom-docker-images
+cat Dockerfile
+docker build -t mycustom-ubuntu:1.0
+docker image inspect mycustom-ubuntu:1.0
+```
+
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/06ea8cf9-fe87-4b4f-b144-5b541064f6bf" />
