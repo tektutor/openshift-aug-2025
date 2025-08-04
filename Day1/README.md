@@ -420,6 +420,8 @@ docker cp index.html server2:/usr/share/nginx/html/index.html
 echo "Server 3" > index.html
 docker cp index.html server3:/usr/share/nginx/html/index.html
 ```
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/cbe902ad-3ca2-424a-bcee-aae6a1565f27" />
+
 
 Now open your chrome/firefox web browser on your training machine
 ```
@@ -427,3 +429,10 @@ http://localhost:80
 ```
 
 Each time, you refresh it supposed to forward the request to server1, server2 and server3 in the round robin fashion.
+
+<img width="1296" height="219" alt="image" src="https://github.com/user-attachments/assets/221d56cb-ee3d-4466-a133-1861f44e55bc" />
+
+<img width="1296" height="219" alt="image" src="https://github.com/user-attachments/assets/cd3ec5e9-b574-433b-be0d-17a158412efe" />
+
+
+<img width="1296" height="219" alt="image" src="https://github.com/user-attachments/assets/fdbea300-d534-4d6c-87c3-79f68aa6a764" />
