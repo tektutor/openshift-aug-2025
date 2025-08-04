@@ -197,3 +197,20 @@ docker images | grep hello-world
 ```
 
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/129b7efa-b89c-487b-bf84-3976d3d5d24f" />
+
+## Lab - Creating a docker container in interactive(foreground) mode
+```
+docker run -it --name ubuntu-jegan --hostname ubuntu-jegan ubuntu:latest /bin/bash
+```
+
+<pre>
+- In the above command, docker is the client tool that helps us interact with the docker server
+- run - command creates a new container and starts the container
+- it - interactive terminal, runs in in foreground/interactive mode
+- name - name of the docker or container id, this is what docker server uses internally
+- hostname - used as an alternate to IP address just like we assign a hostname for virtual machine or OS
+- ubuntu:latest - this is the name docker image, latest is the tag/version of the ubuntu image
+- /bin/bash - this launchest the bash shell terminal inside the container as the default application
+</pre>
+
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/2f2e2c7e-c41b-4f34-a83b-c8bb33a5d673" />
