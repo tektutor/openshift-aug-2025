@@ -122,11 +122,7 @@
 </pre>
 
 ## Info - Hypervisor High-Level Architecture
-<pre>
-  
-</pre>
+![Hypervisor](HypervisorHighLevelArchitecture.png)
 
 ## Info - Docker High-Level Architecture
-<pre>
-  
-</pre>
+![Docker](DockerHighLevelArchitecture.png)
