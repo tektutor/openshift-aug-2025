@@ -339,6 +339,8 @@ docker inspect -f {{.NetworkSettings.IPAddress}} c2-jegan
 <img width="1960" height="624" alt="image" src="https://github.com/user-attachments/assets/0717c6b5-461e-40d7-aeb5-6a2cbdef82a8" />
 
 ## Lab - Setting up a Load Balancer with 3 web server containers 
+Our lb setup is going to look as shown below 
+![lb](lb-topology.png)
 
 Let's first create 3 web server container using nginx:latest docker image from Docker Hub Remote Registry
 ```
