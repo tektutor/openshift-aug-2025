@@ -1,4 +1,4 @@
-# Day 1
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/a58e2be0-cfa7-46cd-b133-7f9045c5292a" /># Day 1
 
 ## Info - Boot Loaders
 <pre>
@@ -315,6 +315,16 @@ docker image inspect mycustom-ubuntu:1.0
 
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/06ea8cf9-fe87-4b4f-b144-5b541064f6bf" />
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/e1841eaf-3721-42f0-8e2c-d9d8be7af546" />
+
+Let's create a container using our custom docker image
+```
+docker run -dit --name test --hostname test mycustom-ubuntu:1.0 /bin/bash
+ifconfig
+ping 8.8.8.8
+mvn --version
+exit
+```
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/501914c8-dfae-4f73-96c0-5f2bfa628b7e" />
 
 ## Lab - Rename a container
 ```
