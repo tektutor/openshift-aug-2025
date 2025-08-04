@@ -172,3 +172,10 @@ docker images
 ```
 <img width="1960" height="624" alt="image" src="https://github.com/user-attachments/assets/3e7b0d54-86b2-46b2-aab4-021b224ead26" />
 
+Troubleshooting permission denied error, when it prompts for password type palmeto@123
+```
+id
+su <your-user-name>
+id
+docker images
+```
