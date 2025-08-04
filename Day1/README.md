@@ -275,6 +275,29 @@ docker ps
 
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/2771e5b1-d4b8-44c9-aad8-ffa9a62ac3d1" />
 
+## Lab - Let's start an exited container
+
+List the running containers
+```
+docker ps
+```
+
+List all containers
+```
+docker ps -a
+```
+
+Start the ubuntu1-jegan container
+```
+docker start ubuntu1-jegan
+```
+
+Let's list and see if ubuntu1-jegan container is started
+```
+docker ps
+```
+
+
 ## Lab - Finding the image details like how many layers each image has got
 ```
 docker image inspect ubuntu:latest
