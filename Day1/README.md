@@ -368,7 +368,7 @@ exit
 
 On your local machine, copy the nginx.conf from container to your local machine
 ```
-docker cp lb:/etc/nginx/nginx.confg .
+docker cp lb:/etc/nginx/nginx.conf .
 cat nginx.conf
 ```
 
