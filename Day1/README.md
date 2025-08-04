@@ -230,6 +230,16 @@ docker ps -a
 ## Lab - let's create a custom docker image
 
 Clone this training repository
+<pre>
+- In the command below, we are trying to create a custom docker image
+- the build commands expects us to provide a Dockerfile with instructions like
+  - what is the base image we would like to use to build a custom docker image
+  - RUN keyword, let's us run a ubuntu linux commands, using this we are trying install all the necessary linux
+    like vim editor, ifconfig, ping, git, jdk, maven build tool etc.,
+  - t switch, this tells docker server that once the image is built we want to tag the image with a friendly name called mycustom-ubuntu:1.0 
+  - the dot(.) at the end of the commands, tells the path where Docker can find the Dockerfile
+</pre>
+
 ```
 cd ~
 git clone https://github.com/tektutor/openshift-aug-2025.git
@@ -240,3 +250,20 @@ docker build -t mycustom-ubuntu:1.0 .
 docker images | grep mycustom
 ```
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/7b7c2fb2-6b18-4e7d-9a2d-2c5007f3d4e2" />
+
+## Lab - Let's stop a running container
+Let's create couple of ubuntu containers in the background(daemon) mode
+```
+docker run -dit --name ubuntu1-jegan --hostname ubuntu1-jegan ubuntu:latest ubuntu:latest /bin/bash
+docker run -dit --name ubuntu2-jegan --hostname ubuntu2-jegan ubuntu:latest ubuntu:latest /bin/bash
+```
+
+List the running containers
+```
+docker ps
+```
+
+Stop the ubuntu1-jegan container
+```
+
+```
