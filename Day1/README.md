@@ -436,3 +436,14 @@ Each time, you refresh it supposed to forward the request to server1, server2 an
 
 
 <img width="1296" height="219" alt="image" src="https://github.com/user-attachments/assets/fdbea300-d534-4d6c-87c3-79f68aa6a764" />
+
+Check the logs of server1
+```
+docker logs server1
+docker logs server2
+docker logs server3
+docker logs lb
+```
+
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/d6ae0133-5222-40a1-8826-1f87281cf770" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/c7ff0383-5230-48de-85bb-118bc3f364c5" />
