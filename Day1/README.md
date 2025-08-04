@@ -315,3 +315,13 @@ docker image inspect mycustom-ubuntu:1.0
 
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/06ea8cf9-fe87-4b4f-b144-5b541064f6bf" />
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/e1841eaf-3721-42f0-8e2c-d9d8be7af546" />
+
+## Lab - Rename a container
+```
+docker ps
+docker rename ubuntu1-jegan c1-jegan
+docker rename ubuntu2-jegan c2-jegan
+docker ps
+```
+
+<img width="1960" height="624" alt="image" src="https://github.com/user-attachments/assets/0d9e68df-c987-43c2-958c-769aefd2179e" />
