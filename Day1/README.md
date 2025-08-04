@@ -1,5 +1,18 @@
 # Day 1
 
+## Info - Boot Loaders
+<pre>
+- Boot Loader is a system utility that gets installed on the Sector 0, Byte 0 of your Hard Disk (MBR)
+- MBR stands for Master Boot Record
+- In the Master Boot Record the Boot Loader software is installed as part of your OS installation
+- commonly referred as dual/multi-booting
+- examples
+  - LILO ( Linux Loader - almost dead and replaced by GRUB )
+  - GRUB2 
+  - BootCamp ( mostly in Mac Books )
+- here only one OS can be active at any point of time
+</pre>  
+
 ## Info - Hypervisor Overview
 <pre>
 - Hypervisor is nothing but virtualization technology
@@ -28,4 +41,6 @@
   - RAM
   - Storage
 - each VM represents one fully functional Operating System
+- many OS can run side by side, i.e more than OS can be actively running
 </pre>
+
