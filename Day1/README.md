@@ -21,4 +21,11 @@
        - Oracle VirtualBox ( Windows, Mac OS-X & Linux )
        - Microsoft Hyper-V ( Windows )
        - Parallels ( Mac OS-X )
+- this type of virtualization is called heavy-weight virtualization
+- the Operating System that runs within the Virtual Machine(VM) is called Guest OS
+- For each VM, we need to allocated dedicated hardware resources
+  - CPU Cores
+  - RAM
+  - Storage
+- each VM represents one fully functional Operating System
 </pre>
