@@ -325,3 +325,15 @@ docker ps
 ```
 
 <img width="1960" height="624" alt="image" src="https://github.com/user-attachments/assets/0d9e68df-c987-43c2-958c-769aefd2179e" />
+
+## Lab - Finding the IP Address of a running container
+```
+docker ps
+```
+
+Find the IP Address of the running container
+```
+docker inspect c1-jegan | grep IPA
+docker inspect -f {{.NetworkSettings.IPAddress}} c2-jegan
+```
+<img width="1960" height="624" alt="image" src="https://github.com/user-attachments/assets/0717c6b5-461e-40d7-aeb5-6a2cbdef82a8" />
