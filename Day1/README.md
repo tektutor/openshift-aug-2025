@@ -59,5 +59,8 @@
 - each container runs in a separate namespace
 - containers are isolated from each other via namespaces (Linux kernel feature)
 - we can apply resource quota restrictions by using Linux kernel feature called Control Groups ( CGroups ) 
+- containers has
+  - application and its dependencies
 </pre>
+
 
