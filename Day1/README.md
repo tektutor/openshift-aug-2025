@@ -187,3 +187,13 @@ docker pull ubuntu:latest
 docker images
 ```
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/a782d109-5d2f-4df9-9cea-d4ab2e6e3035" />
+
+
+## Lab - Deleting a docker image from Docker Local Registry ( var/lib/docker )
+```
+docker images | grep hello-world
+docker rmi hello-world:latest
+docker images | grep hello-world
+```
+
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/129b7efa-b89c-487b-bf84-3976d3d5d24f" />
