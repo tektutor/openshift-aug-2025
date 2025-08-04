@@ -102,3 +102,21 @@
   - it hosts multiple docker images
   - it is maintained by Docker Inc with support from many opensource community contributors
 </pre>
+
+## Info - Docker Image
+<pre>
+- is a blueprint of a container
+- it is similar to windows.iso or ubuntu.iso file
+- whatever software, libraries and dependencies your application has, everything can be installed, configured in the docker image
+- using docker image, mutiple containers can be created
+- though some of the docker images may sound/appear like a operating system, they are not really OS
+  - they just have package managers, commonly used linux tools, bash/sh terminals etc.,
+</pre>
+
+## Info - Docker Container
+<pre>
+- running instance of a Docker Container
+- containers gets atlease one IP address and one Network card
+- containers normally has their on terminal ( bash or shell )
+- certain docker images also comes with pre-installed, pre-configured application ( default application that runs when containers are created )
+</pre>
