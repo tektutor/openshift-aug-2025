@@ -337,3 +337,21 @@ docker inspect c1-jegan | grep IPA
 docker inspect -f {{.NetworkSettings.IPAddress}} c2-jegan
 ```
 <img width="1960" height="624" alt="image" src="https://github.com/user-attachments/assets/0717c6b5-461e-40d7-aeb5-6a2cbdef82a8" />
+
+## Lab - Setting up a Load Balancer with 3 web server containers 
+
+Let's first create 3 web server container using nginx:latest docker image from Docker Hub Remote Registry
+```
+docker run -d --name server1 --hostname server1 nginx:latest
+docker run -d --name server2 --hostname server2 nginx:latest
+docker run -d --name server3 --hostname server3 nginx:latest
+docker ps
+```
+
+Let's create the load balancer container
+```
+docker run -d --name lb --hostname lb -p 80:80 nginx:latest
+docker ps
+```
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/02bcf6e0-4b7a-4a86-ac50-05e0f3fb4d87" />
+<img width="1960" height="767" alt="image" src="https://github.com/user-attachments/assets/bb8bbba6-ef01-4523-b9cc-a9762c3744ff" />
