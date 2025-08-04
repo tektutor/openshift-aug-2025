@@ -237,5 +237,6 @@ cd openshift-aug-2025
 cd Day1/custom-docker-image
 cat Dockerfile
 docker build -t mycustom-ubuntu:1.0 .
+docker images | grep mycustom
 ```
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/7b7c2fb2-6b18-4e7d-9a2d-2c5007f3d4e2" />
