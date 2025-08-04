@@ -355,3 +355,75 @@ docker ps
 ```
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/02bcf6e0-4b7a-4a86-ac50-05e0f3fb4d87" />
 <img width="1960" height="767" alt="image" src="https://github.com/user-attachments/assets/bb8bbba6-ef01-4523-b9cc-a9762c3744ff" />
+
+Let's find the location of nginx configuration file by getting inside the lb container shell
+```
+docker exec -it lb bash
+cd /etc/nginx
+cat nginx.conf
+exit
+```
+
+On your local machine, copy the nginx.conf from container to your local machine
+```
+docker cp lb:/etc/nginx/nginx.confg .
+cat nginx.conf
+```
+
+Modify the nginx.conf file as shown below
+```
+user  nginx;
+worker_processes  auto;
+
+error_log  /var/log/nginx/error.log notice;
+pid        /run/nginx.pid;
+
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    upstream backend {
+        server 172.17.0.2:80;
+        server 172.17.0.3:80;
+        server 172.17.0.4:80;
+    }
+
+    server {
+        location / {
+            proxy_pass http://backend;
+        }
+    }
+}
+```
+
+Now, we need to copy the update nginx.conf file from our lab machine to the lb container
+```
+docker cp nginx.conf lb:/etc/nginx/nginx.conf
+```
+
+Let's restart the lb container, to apply config changes
+```
+docker restart lb
+docker ps
+```
+
+Now we need to customize the respone of server1, server2 and server3
+```
+echo "Server 1" > index.html
+docker cp index.html server1:/usr/share/nginx/html/index.html
+
+echo "Server 2" > index.html
+docker cp index.html server2:/usr/share/nginx/html/index.html
+
+echo "Server 3" > index.html
+docker cp index.html server3:/usr/share/nginx/html/index.html
+```
+
+Now open your chrome/firefox web browser on your training machine
+```
+http://localhost:80
+```
+
+Each time, you refresh it supposed to forward the request to server1, server2 and server3 in the round robin fashion.
