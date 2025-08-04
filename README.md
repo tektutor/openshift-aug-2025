@@ -11,3 +11,8 @@
 <pre>
 https://forms.office.com/r/LrrrFxGwNp
 </pre>
+
+<pre>
+- Once you complete the pre-test notify me
+- Once everyone completes the pre-test we will start the training
+</pre>
