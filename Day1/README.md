@@ -214,3 +214,14 @@ docker run -it --name ubuntu-jegan --hostname ubuntu-jegan ubuntu:latest /bin/ba
 </pre>
 
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/2f2e2c7e-c41b-4f34-a83b-c8bb33a5d673" />
+
+## Lab - List all currenly running containers
+```
+docker ps
+```
+
+## Lab - List all containers irrespective of whether they running, exited or just created
+```
+docker ps -a
+```
+
