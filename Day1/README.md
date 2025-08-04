@@ -44,4 +44,20 @@
 - many OS can run side by side, i.e more than OS can be actively running
 </pre>
 
+## Info - Containerization
+<pre>
+- is an application virtualization technology
+- each container represents a single application process in the OS
+- contatiners don't represent an OS, they are just a single application process
+- there are similarities between a virtual machine and containers
+  - each container get its own IP Address just like Operating Systems get their own IP address
+  - each container get its own NIC (Network Card), can have one or more network card ( software defined - virtual )
+  - each container gets its own network stack ( 7 OSI Layers )
+  - each container get its own file sytem
+  - each containers get its own port range ( 0 to 65535 )
+- it is for these reasons, people tend to compare a container with a virtual machine
+- each container runs in a separate namespace
+- containers are isolated from each other via namespaces (Linux kernel feature)
+- we can apply resource quota restrictions by using Linux kernel feature called Control Groups ( CGroups ) 
+</pre>
 
