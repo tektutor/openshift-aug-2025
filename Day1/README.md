@@ -398,7 +398,7 @@ http {
 }
 ```
 
-Now, we need to copy the update nginx.conf file from our lab machine to the lb container
+Now, we need to copy the updated nginx.conf file from our lab machine to the lb container
 ```
 docker cp nginx.conf lb:/etc/nginx/nginx.conf
 ```
