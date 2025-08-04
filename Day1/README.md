@@ -157,3 +157,12 @@ sudo usermod -aG docker $USER
 docker --version
 docker images
 ```
+
+## Lab - Checking the docker version
+```
+docker --version
+docker info
+```
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/5dca0f7c-a352-4fa4-91ef-3b51422df7ea" />
+
+
