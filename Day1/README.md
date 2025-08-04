@@ -101,6 +101,9 @@
 - remote docker registry ( aka Docker Hub website )
   - it hosts multiple docker images
   - it is maintained by Docker Inc with support from many opensource community contributors
+- comes in 2 flavours
+  1. Docker Community Edition - Docker CE ( opensource )
+  2. Docker Enterprise Edition - Docker EE ( Paid Enterprise product)
 </pre>
 
 ## Info - Docker Image
@@ -126,3 +129,5 @@
 
 ## Info - Docker High-Level Architecture
 ![Docker](DockerHighLevelArchitecture.png)
+
+## Demo - Installing Docker Community Edition
