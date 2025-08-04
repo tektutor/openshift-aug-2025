@@ -83,3 +83,22 @@
   - Containerd - internally depends on runC container runtime
 </pre>
 
+## Info - Docker Overview
+<pre>
+- is a container engine developed in Go language by a company called Docker Inc
+- it follows client/server architecture
+- it helps run containerized application workloads
+- the client tool is called docker
+- the server tool is called dockerd, this runs a service with admin privilege
+- wherever the Docker Server is running, it creates a local docker registry
+- local docker registry
+  - it is folder maintained on the system level for all users
+  - in case of linux, /var/lib/docker where all docker images are maintained
+- private docker registry 
+  - it is server that can be setup optionally
+  - generally in the industry they use Sonatype Nexus or JFrog Artifactory
+  - it hosts multiple docker images
+- remote docker registry ( aka Docker Hub website )
+  - it hosts multiple docker images
+  - it is maintained by Docker Inc with support from many opensource community contributors
+</pre>
