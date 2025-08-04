@@ -63,4 +63,23 @@
   - application and its dependencies
 </pre>
 
+## Info - Container Runtime Overview
+<pre>
+- is a low-level software that helps us manage container images and containers
+- it is not user-friendly, hence normally end-users like us never use it directly
+- examples
+  - runC
+  - cRun
+  - CRI-O
+</pre>
+
+## Info - Container Engine Overview
+<pre>
+- is a high-level software that helps us manage container images and containers
+- it is a user-friendly, end-user normally use this
+- examples
+  - Docker - internally depends on containerd, which in turn depends on runC
+  - Podman - internally depends on CRI-O container runtime
+  - Containerd - internally depends on runC container runtime
+</pre>
 
