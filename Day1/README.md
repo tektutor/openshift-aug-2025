@@ -219,9 +219,11 @@ docker run -it --name ubuntu-jegan --hostname ubuntu-jegan ubuntu:latest /bin/ba
 ```
 docker ps
 ```
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/35556ffd-281d-4738-a8de-e1012b43dc58" />
 
 ## Lab - List all containers irrespective of whether they running, exited or just created
 ```
 docker ps -a
 ```
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/68f8fa46-02a9-44db-af82-30635b00716a" />
 
