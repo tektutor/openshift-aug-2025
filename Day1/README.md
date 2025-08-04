@@ -265,5 +265,12 @@ docker ps
 
 Stop the ubuntu1-jegan container
 ```
-
+docker stop ubuntu1-jegan
 ```
+
+Let's list and see if ubuntu1-jegan container is stopped
+```
+docker ps
+```
+
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/2771e5b1-d4b8-44c9-aad8-ffa9a62ac3d1" />
