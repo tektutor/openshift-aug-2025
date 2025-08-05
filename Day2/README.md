@@ -17,4 +17,7 @@
   - ELK/EFK ( Elastic Search, LogStash and Kibana or Elastic Search, Fluentd & Kibana )
 - supports alerts & notification
 - certain container orchestration platform even support scaling up/down server in your cluster ( orchestration platform )
+- some of the container orchestration platforms support CI/CD
+- all the application that must be deployed into Container Orchestration Platforms must be containerized
+- both monolithic and microservice applications are supported
 </pre>
