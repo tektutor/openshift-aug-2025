@@ -420,3 +420,11 @@ oc create deploy nginx --image=image-registry.openshift-image-registry.svc:5000/
 - API Server receives the status update from kubelet, it retrieves the Pod record from etcd database, it then updates the status as Running, ContainerReady, Crashing, etc as per the status received from kubelet
 </pre>
 ![Deployment](deployment.png)
+
+## Lab - Finding the IP Address of Pods
+```
+oc project jegan
+oc get pods -o wide
+```
+
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/66b60ab4-f500-46f9-9e6b-e18a2950deb8" />
