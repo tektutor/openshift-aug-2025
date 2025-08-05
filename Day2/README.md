@@ -53,13 +53,26 @@
   - EKS - Elastic Kubernetes Service from AWS ( you get support for this from Amazon )
   - AKS - Azure Kubernetes Service from Azure ( you get support for this from Microsoft )
   - GKE - you get support this from Google
+- installation is time consuming, not easy
 </pre>
 
 ## Info - Red Hat Openshift Overview
 <pre>
 - it is an enterprise product, requires license to use it
 - developed on top of Open source Google Kubernetes, but this is paid software
-- will get world-wide support from Red Hat 
+- will get world-wide support from Red Hat
+- installation is very difficult and there are numerous ways to install Openshift, much difficult than Kubernetes 
+  installation
+- there are two types of installation
+  1. Installer Provisioned Installation (IPI)
+     - automated installation
+     - very easy to install in any public cloud like AWS, Azure, Google Cloud
+  2. User Provisioned Installation (UPI)
+     - is tough one
+     - installing in bare-metal local server are very difficult and offers same level security and robustness like the ones supported by managed services
+- you will also managed Red Hat Openshift cluster from public cloud
+  - ROSA ( managed Openshift Cluster from AWS )
+  - ARO ( managed Openshift Cluster from Azure )
 </pre>
 
 
