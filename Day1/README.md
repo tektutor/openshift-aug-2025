@@ -119,7 +119,7 @@
 ## Info - Docker Container
 <pre>
 - running instance of a Docker Image
-- containers gets atlease one IP address and one Network card
+- containers gets atleast one IP address and one Network card
 - containers normally has their on terminal ( bash or shell )
 - certain docker images also comes with pre-installed, pre-configured application ( default application that runs when containers are created )
 </pre>
