@@ -151,6 +151,22 @@
 - When any Controller has to communicate to API Server, they make REST API calls and they get response back from API Server via events
 </pre>
 
+## Info - Kubelet Overview
+<pre>
+- Kubelet is a service that runs in every master and worker node
+- Kubelet is Container Agent
+- Kubelet communicates with Container Runtime i.e CRI-O Container Runtime to pull images, create, update and delete Pod containers, check status of Pod containers, etc.
+- Kubelet monitors the health of every Pod container created by it on the local node and keeps sending status updates to API Server in a heart-beat regular intervals via REST API 
+- API Server receives those events, retrieves the Pod database entries from etcd, updates the Pod status accordingly
+- When API Server misses 3 consecutive kubelet status updates, it learns the node where the kubelet is running is not reachable, hence API Server updates the Node status as Not Ready
+</pre>
+
+## Info - Kube-Proxy Overview
+<pre>
+- is a Pod that runs in every master and worker nodes
+- it is responsible to provide load-balancing functionalities to a group of Pods coming from a single application deployment 
+</pre>
+
 ## Info - Red Hat Openshift High-level Architecture
 ![Openshift](openshiftArchitecture.png)
 
