@@ -38,7 +38,11 @@
 
 ## Info - Kubernetes Overview
 <pre>
--   
+- this is an opensource Container Orchestration Platform Google
+- it is highly robust and production grade
+- many companies use them in production
+- it supports only command-line interface, no GUI/Dashboard
+- if you like like, you could try using Rancher, which provide Webconsole over Kubernetes
 </pre>
 
 ## Info - Red Hat Openshift Overview
