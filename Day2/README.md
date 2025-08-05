@@ -39,6 +39,8 @@
 ## Info - Kubernetes Overview
 <pre>
 - this is an opensource Container Orchestration Platform Google
+- is developed in Go langanguage
+- but one can deploy C/C++, Java, Dot Net, Python, Perl, pretty much any application into Kuberentes
 - it is highly robust and production grade
 - many companies use them in production
 - it supports only command-line interface, no GUI/Dashboard
