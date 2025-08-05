@@ -289,6 +289,7 @@ oc delete project jegan
 oc new-project jegan
 oc project jegan
 
+# The below command will download image from Docker Hub website and creates 3 Pod instances in your project namespace
 oc create deployment nginx --image=nginx:latest --replicas=3
 ```
 
