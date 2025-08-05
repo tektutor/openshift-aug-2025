@@ -82,6 +82,7 @@
 - comes with many additional features on top of Kubernetes
   - Build, BuildConfig, Route, DeploymentConfig, etc.,
   - S2I ( application can be deployed from source code )
+- Red Hat supports Universal Bases Images (UBI) for most popular languages
 </pre>
 
 
