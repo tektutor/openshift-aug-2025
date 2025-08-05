@@ -436,3 +436,10 @@ oc get pods -o wide
 ```
 
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/66b60ab4-f500-46f9-9e6b-e18a2950deb8" />
+
+## Lab - Editing the deploy,replicaset, pods
+```
+oc edit deploy/nginx
+oc edit rs/nginx-759b9ddc77
+oc edit pod/nginx-759b9ddc77-swv8m
+```
