@@ -342,3 +342,11 @@ Let's troubleshooting, why the pod is crashing
 oc logs nginx-54c98b4f84-fhj6s
 ```
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/6cf622a4-6181-4326-8040-8ccd9a3f83c1" />
+
+Root Cause
+<pre>
+- the nginx:latest image we used to deploy this application has multiple violations
+- it is attempting to do certain activities which are only allowed for super-users, CoreOS will not allow images with root user normally
+- nginx:latest image is using port 80, which is below 1024, port 80 is reserved for internal openshift use
+- the nginx image is attempting to create a folder /var directly which is allowed only for Machine Config Operators, hence the application is crashing due to permission denied
+</pre>
