@@ -320,3 +320,5 @@ oc get deploy,rs,po
 oc get all
 ```
 
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/37a765ba-8fcc-4352-b007-1226be32d3fd" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/e1aa5f6c-2b8f-417d-a40c-74173f2f12cc" />
