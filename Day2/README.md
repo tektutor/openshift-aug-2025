@@ -12,5 +12,9 @@
 - RBAC - Role based access control is supported, hence only authorized users can access your applications or deploy applications
 - some orchestration platform supports only CLI, while others also support web console(Dashboard - GUI)
 - allows you to expose your applications to internal use only or if required can be allowed for external access via services
-- 
+- centralized logging is supported
+  - splunk ( can be integrated on demand )
+  - ELK/EFK ( Elastic Search, LogStash and Kibana or Elastic Search, Fluentd & Kibana )
+- supports alerts & notification
+- certain container orchestration platform even support scaling up/down server in your cluster ( orchestration platform )
 </pre>
