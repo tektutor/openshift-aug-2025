@@ -361,12 +361,16 @@ oc delete deploy/nginx
 
 ## Lab - Deploy nginx with a image that follows the Openshift image conventions(best practices)
 ```
+# Replace 'jegan' with your name
 oc project jegan
+
 # For server1(192.168.10.200) participants
 oc create deploy nginx --image=image-registry.openshift-image-registry.svc:5000/openshift/nginx:1.27 --replicas=3
 
 # For server2(192.168.10.201) participants
 oc create deploy nginx --image=image-registry.openshift-image-registry.svc:5000/openshift/mynginx:1.27 --replicas=3
+
+## Common instructions for both servers
 oc get deploy,rs,po
 oc get po -w
 ```
