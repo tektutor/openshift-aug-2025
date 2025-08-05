@@ -43,11 +43,23 @@
 - many companies use them in production
 - it supports only command-line interface, no GUI/Dashboard
 - if you like like, you could try using Rancher, which provide Webconsole over Kubernetes
+- Supports services
+  - to expose your application for internal only consumption
+  - to expose your applicaiton for external access
+- Supports Custom Resource Definitions a.k.a CRD to extend Kubernetes to support new type of Resources
+- it supports extending Kubernetes functionality by developing your own Kubernetes Operators, or your could download and install third-party operators within Kubernetes
+- no support from Google
+- there are managed Kubernetes from AWS, Azure, Google cloud
+  - EKS - Elastic Kubernetes Service from AWS ( you get support for this from Amazon )
+  - AKS - Azure Kubernetes Service from Azure ( you get support for this from Microsoft )
+  - GKE - you get support this from Google
 </pre>
 
 ## Info - Red Hat Openshift Overview
 <pre>
-  
+- it is an enterprise product, requires license to use it
+- developed on top of Open source Google Kubernetes, but this is paid software
+- will get world-wide support from Red Hat 
 </pre>
 
 
