@@ -419,3 +419,4 @@ oc create deploy nginx --image=image-registry.openshift-image-registry.svc:5000/
 - kubelet monitors the status of the newly created Pod containers, it sends the status to the API Server in peridically fashion
 - API Server receives the status update from kubelet, it retrieves the Pod record from etcd database, it then updates the status as Running, ContainerReady, Crashing, etc as per the status received from kubelet
 </pre>
+![Deployment](deployment.png)
