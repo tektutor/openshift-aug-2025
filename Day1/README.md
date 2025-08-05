@@ -459,3 +459,93 @@ docker logs lb
 
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/d6ae0133-5222-40a1-8826-1f87281cf770" />
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/c7ff0383-5230-48de-85bb-118bc3f364c5" />
+
+## Lab - Let's create a mysql container
+Create the mysql container and run it in background
+```
+docker run -d --name mysql-jegan --hostname mysql-jegan -e MYSQL_ROOT_PASSWORD=root@123 mysql:latest
+```
+
+List and see if the mysql container is running
+```
+docker ps
+```
+
+Get inside the mysql container shell
+```
+docker exec -it mysql /bin/sh
+
+#Connect to mysql db server using the mysql client that comes with the mysql image, type root@123 as password
+mysql -u root -p
+
+SHOW DATABASES;
+CREATE DATABASE tektutor;
+USE tektutor;
+
+CREATE TABLE training ( id INT NOT NULL, name VARCHAR(300) NOT NULL, duration VARCHAR(100) NOT NULL, PRIMARY KEY (id) );
+
+INSERT INTO training VALUES ( 1, "DevOps", "5 Days" );
+INSERT INTO training VALUES ( 2, "Advance Go lang programming", "5 Days" );
+INSERT INTO training VALUES ( 3, "Linux Device Drivers", "5 Days" );
+
+SELECT * FROM training;
+```
+
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/40605fea-efa6-42be-9dcc-878992342f1c" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/6f56ce72-237c-455a-9aba-e6a423c433bf" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/b29d59c9-f7ef-4897-9e0e-fe5b98ecc24d" />
+
+Now that we understand the data is lost when container get deleted in case used the container storage. Hence, the best practice, we should treat a container like an immutable(read-only) resource.
+Let's create a mysql container that uses external storage to save the database, table, etc.,
+
+```
+mkdir -p /tmp/jegan/mysql
+docker run -d --name mysql-jegan --hostname mysql-jegan -e MYSQL_ROOT_PASSWORD=root@123 -v /tmp/jegan/mysql:/var/lib/mysql mysql:latest
+
+docker ps
+docker exec -it mysql /bin/sh
+
+#Connect to mysql db server using the mysql client that comes with the mysql image, type root@123 as password
+mysql -u root -p
+
+SHOW DATABASES;
+CREATE DATABASE tektutor;
+USE tektutor;
+
+CREATE TABLE training ( id INT NOT NULL, name VARCHAR(300) NOT NULL, duration VARCHAR(100) NOT NULL, PRIMARY KEY (id) );
+
+INSERT INTO training VALUES ( 1, "DevOps", "5 Days" );
+INSERT INTO training VALUES ( 2, "Advance Go lang programming", "5 Days" );
+INSERT INTO training VALUES ( 3, "Linux Device Drivers", "5 Days" );
+
+SELECT * FROM training;
+
+exit #exit from mysql
+exit #exit from container shell
+```
+
+Let's delete the mysql container
+```
+docker rm -f mysql
+```
+
+Let's create a new mysql container, mount the same /tmp/jegan/mysql folder and let's see if the data is intact
+```
+docker run -d --name mysql-jegan --hostname mysql-jegan -e MYSQL_ROOT_PASSWORD=root@123 -v /tmp/jegan/mysql:/var/lib/mysql mysql:latest
+
+docker ps
+docker exec -it mysql /bin/sh
+
+#Connect to mysql db server using the mysql client that comes with the mysql image, type root@123 as password
+mysql -u root -p
+
+#YOu should see the TEKTUTOR database in tact
+SHOW DATABASES;
+
+#Switch to the TEKTUTOR database
+USE TEKTUTOR;
+SHOWT TABLES;
+SELECT * FROM training;
+```
+
+As we used an external storage ( host path /tmp/jegan/mysql ), we didn't loose the data though we deleted the mysql container, this is how containers should/will be used in production (real world).
