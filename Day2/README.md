@@ -59,6 +59,9 @@
 - application can only be deploy if you have a container image
 </pre>
 
+## Info - Kubernetes High-level Architecture
+![Kubernetes](KubernetesArchitecture2.png)
+
 ## Info - Red Hat Openshift Overview
 <pre>
 - it is Red Hat's distributio of Kubernetes
@@ -85,6 +88,9 @@
   - S2I ( application can be deployed from source code )
 - Red Hat supports Universal Bases Images (UBI) for most popular languages
 </pre>
+
+## Info - Red Hat Openshift High-level Architecture
+![Openshift](openshiftArchitecture.png)
 
 ## Lab - Checking if openshift tools are installed
 ```
