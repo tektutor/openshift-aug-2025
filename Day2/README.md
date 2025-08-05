@@ -184,7 +184,7 @@ kubectl get nodes -o wide
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/b227e331-3a99-4f43-a983-b8279a32fb7b" />
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/aeb81b4f-b091-4505-9c48-1e7f8c258c83" />
 
-## Lab - Find more detailsmaster01.ocp4.palmeto.org one of the master nodes
+## Lab - Find more details about master01.ocp4.palmeto.org node
 ```
 oc get nodes
 oc describe node master01.ocp4.palmeto.org
