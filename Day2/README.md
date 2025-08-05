@@ -385,3 +385,13 @@ oc get po -w
 
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/2e1084cb-4639-4719-98f9-fea5266f6a74" />
 
+
+## Lab - Scale down nginx deployment
+```
+oc project jegan
+oc get deploy
+oc scale deploy/nginx --replicas=3
+oc get po
+```
+
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/f22d993e-254b-4726-87d2-32d67d9db88f" />
