@@ -421,6 +421,14 @@ oc create deploy nginx --image=image-registry.openshift-image-registry.svc:5000/
 </pre>
 ![Deployment](deployment.png)
 
+
+## Lab - Using describe to get more details about deployment, replicaset, pods
+```
+oc describe deploy/nginx
+oc describe rs/nginx-759b9ddc77
+oc describe pod/nginx-759b9ddc77-bcmj7
+```
+
 ## Lab - Finding the IP Address of Pods
 ```
 oc project jegan
