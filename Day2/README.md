@@ -225,6 +225,7 @@ As you can notice, both containers are reporting the same hostname and IP Addres
 - any time a new Deployment is created, existing deployment is edited/updated, existing deployment is deleted, Deployment Controller receives notifications from API server via broadcasting events
 - Deployment Controller is responsible for Rolling updates, rollback, etc.,
 - Though Deployment Controller is not directly responsible for scale up/down, it delegates the scale up/down to ReplicaSet controller updating the desired Pod count in the ReplicaSet
+- generally used to deploy stateless applications
 </pre>
 
 ## Info - Red Hat Openshift High-level Architecture
