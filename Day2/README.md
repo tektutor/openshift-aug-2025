@@ -182,6 +182,29 @@
 - every Pod may optionally have supporting containers like side-car containers that exposes the application logs produced by application container
 </pre>  
 
+## Lab - Creating a Pod using docker
+Create a pause container
+```
+docker run -d --name nginx-pause --hostname nginx registry.k8s.io/pause:latest
+docker ps
+docker inspect -f {{.NetworkSettings.IPAddress}} nginx-pause
+```
+
+Create a nginx web server container
+```
+docker run -d --name nginx --network=container:nginx-pause nginx:latest
+docker ps
+```
+
+Let's get inside the nginx container shell
+```
+docker exec -it nginx /bin/sh
+hostname
+hostname -i
+exit
+```
+As you can notice, both containers are reporting the same hostname and IP Address, this is how Pods are created in Kubernetes and Openshift.
+
 ## Info - ReplicaSet Overview
 
 ## Info - Deployment Overview
