@@ -283,3 +283,39 @@ Deleting a project ( this will delete all the resources created under this proje
 ```
 oc delete project jegan
 ```
+
+## Lab - Deploying your first application into Openshift
+```
+oc new-project jegan
+oc project jegan
+
+oc create deployment nginx --image=nginx:latest --replicas=3
+```
+
+List all deployments in your project
+```
+oc get deployments
+oc get deployment
+oc get deploy
+```
+
+List all replicasets in your project
+```
+oc get replicasets
+oc get replicaset
+oc get rs
+```
+
+List all pods
+```
+oc get pods
+oc get pod
+oc get po
+```
+
+List mutiple resources
+```
+oc get deploy,rs,po
+oc get all
+```
+
