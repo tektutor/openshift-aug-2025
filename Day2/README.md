@@ -170,6 +170,7 @@
 ## Info - Pod Overview
 <pre>
 - is a logical group of related containers
+- is a YAML object/resource stored in etcd database
 - all the containers that runs in a single Pod shares/get a single IP Address
 - all the containers that are part of a single Pod shares same Port namespace i.e ( 0 - 65535 )
 - every Pod has a secret hidden infra container called Pause Container
@@ -206,10 +207,24 @@ exit
 As you can notice, both containers are reporting the same hostname and IP Address, this is how Pods are created in Kubernetes and Openshift.
 
 ## Info - ReplicaSet Overview
+<pre>
+- is a YAML resource/object that is stored inside etcd database
+- this is taken as an input by ReplicaSet Controller
+- any time a new ReplicaSet is created, existing replicaset is updated, existing replicaset is deleted, ReplicaSet controller receives notifications form API Server via broadcasting events
+- ReplicaSet Controller is responsible to create the number of desired Pod instance counts mentioned in the ReplicaSet
+- ReplicaSet Controller will then request API Server to create so many Pods 
+- API Server creates so many Pods database records(YAML) in the etcd database
+- ReplicaSet Controller is reponsible to monitor the state of each Pod container and ensure the desired number of Pods containers are always running, when it finds a discrepencies, that while 3 desired Pods are requested only 2 Pods are running, in such cases the ReplicaSet Controller will ensure a new Pod is created in exchange of the faulty crashed/non-function Pod
+- ReplicaSet Controller is responsible for Scale up/down
+</pre>
 
 ## Info - Deployment Overview
 <pre>
-  
+- is a YAML resource/object that is stored inside the etcd database
+- this is taken as an input by Deployment Controller, it then takes help of API Server to create a ReplicaSet for maning the Pods
+- any time a new Deployment is created, existing deployment is edited/updated, existing deployment is deleted, Deployment Controller receives notifications from API server via broadcasting events
+- Deployment Controller is responsible for Rolling updates, rollback, etc.,
+- Though Deployment Controller is not directly responsible for scale up/down, it delegates the scale up/down to ReplicaSet controller updating the desired Pod count in the ReplicaSet
 </pre>
 
 ## Info - Red Hat Openshift High-level Architecture
