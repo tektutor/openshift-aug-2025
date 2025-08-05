@@ -395,3 +395,27 @@ oc get po
 ```
 
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/f22d993e-254b-4726-87d2-32d67d9db88f" />
+
+## Info - What happens internally within Openshift when we create deployment
+```
+oc create deploy nginx --image=image-registry.openshift-image-registry.svc:5000/openshift/nginx:1.27 --replicas=3
+```
+
+<pre>
+- oc is a client tool, it captures all the required parameter from us(end-user), it makes a REST call to API Server requesting to create new deployment named nginx with container image mentioned in the command, with desired pod count 3
+- API Server receives this request, create a Deployment record in the etcd database
+- API Server sends a broadcasting event saying new Deployment nginx created
+- Deployment Controller receives this event, picks the Deployment configuration, it makes a REST call to API Server requesting to create a new replicaset for the nginx deployment
+- API Server receives the request, creates a Replicaset record in the etcd database
+- API Server sends a broadcasting event saying new ReplicaSet created
+- ReplicaSet Controller receives this event, picks the Replicaset configuraton, it understand 3 Pods are to be created, it makes a REST call to API Server requesting to create 3 Pod for the nginx deployment
+- API Server receives the request, it creates 3 Pods records in the etcd database
+- ApI Server sends a broadcasting event saying new Pod created(this event is broadcasted for every Pod individually)
+- Scheduler receives the event notifications, it then identifies healthy nodes where those individual Pods can be deployed
+- Scheduler makes a REST call to API Server, to send its scheduling recommendations for each Pod
+- API Server receives the request, it retrieving the existing Pod records from etcd database, updates the scheduling details in the Pod configuration
+- API Server sends a broadcasting event for each Pod, saying Pod so and so scheduled to so and so node
+- kubelet running on that nodes receives the notification, it then pulls the image mentioned in the Pod configuration, it then creates containers with the help of CRI-O container runtime
+- kubelet monitors the status of the newly created Pod containers, it sends the status to the API Server in peridically fashion
+- API Server receives the status update from kubelet, it retrieves the Pod record from etcd database, it then updates the status as Running, ContainerReady, Crashing, etc as per the status received from kubelet
+</pre>
