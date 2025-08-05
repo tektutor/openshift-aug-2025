@@ -85,4 +85,19 @@
 - Red Hat supports Universal Bases Images (UBI) for most popular languages
 </pre>
 
+## Lab - Checking if openshift tools are installed
+```
+oc version
+kubectl version
+
+oc get nodes
+oc get nodes -o wide
+
+kubectl get nodes
+kubectl get nodes -o wide
+```
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/b227e331-3a99-4f43-a983-b8279a32fb7b" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/aeb81b4f-b091-4505-9c48-1e7f8c258c83" />
+
+
 
