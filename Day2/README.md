@@ -254,5 +254,32 @@ oc describe node master01.ocp4.palmeto.org
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/905f90e8-a7c9-4072-9793-5b6190d93e54" />
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/72bbc778-a25e-49ad-872e-19bf2bb84f1d" />
 
+## Lab - Creating a project for yourself 
+Replace 'jegan' with your name
+```
+oc new-project jegan
+```
 
+Listing projects
+```
+oc projects
 
+oc get projects
+oc get project
+```
+
+Switching between projects
+```
+oc project default
+of project jegan
+```
+
+Finding the currently active project
+```
+oc project
+```
+
+Deleting a project ( this will delete all the resources created under this project recursively )
+```
+oc delete project jegan
+```
