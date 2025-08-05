@@ -89,6 +89,68 @@
 - Red Hat supports Universal Bases Images (UBI) for most popular languages
 </pre>
 
+## Info - Control Plane Components
+<pre>
+- Control plane components runs only in master node
+- Control Plan Components
+  1. API Server
+  2. etcd key/value distributed database
+  3. scheduler
+  4. Controller Managers 
+</pre>
+
+#### API Server
+<pre>
+- is the heart/brain of Kubernetes/Openshift
+- has REST APIs for every Container Orchestration Feature supported by OpenShift
+- API Server is the only component that other Control Plane Components are aware of
+- Rest of the Control Plane Components they all communicate only to API Server
+- In other words, all communication will happen/flow via API Server only
+- The other Control Plane components or any Openshift components they communicate with API Server via REST calls only
+- The API Server responds once the service/request is served, by events
+- API Server is the only components that has READ/Write access to etcd database
+- API Server maintains all the cluster states, control plane states, user application states in etcd database
+- each time any new record is added, edited/updated, deleted API Server will send broadcasting notifying some change has happened
+- it runs a Pod
+- this is one of the static Pod created by Kubelet service
+</pre>
+
+#### etcd database
+<pre>
+- is a distributed opensource database that stores and revies records in key/value fashion
+- it is an independent opensource project which is used by Kubernetes/Openshift
+- hence, etcd database are used by other products both opensource and commercial products
+- generally this works a group of etcd databases ( a.k.a cluster )
+- when data is updated in instance of etcd db server, it gets automatically synchronized on instances in the etcd db cluster
+- a minimum of 3 is required to form a stable quarom of distributed 3 node etcd cluster
+- is one of the static pod created by kubelet service
+</pre>
+
+#### Scheduler
+<pre>
+- Scheduler is responsible to find a healthy node to deploy each Pod that is created by API Server
+- is one of the static pod created by kubelet service
+- Scheduler by itself can schedule Pods directly, it can just send its scheduling recommendations to API Server via REST API call
+- Scheduler gets notifications from API Server when new Pod is created, existing Pod is edited, existing Pod is deleted, etc via events
+</pre>
+
+#### Controller Managers
+<pre>
+- it is a collection of many Controllers
+- For example
+  - Deployment Controller
+  - ReplicaSet Controller
+  - StatefulSet Controller
+  - Job Controller
+  - CronJob Controller
+  - Endpoint Controller
+  - Node Controller
+- is one of the static pod created by kubelet service  
+- each Controller, manages one type of Kubernetes/Openshift resource
+- they get notified by events broadcasted by API Server
+- When any Controller has to communicate to API Server, they make REST API calls and they get response back from API Server via events
+</pre>
+
 ## Info - Red Hat Openshift High-level Architecture
 ![Openshift](openshiftArchitecture.png)
 
