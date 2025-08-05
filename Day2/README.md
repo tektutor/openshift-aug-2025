@@ -206,6 +206,20 @@ exit
 ```
 As you can notice, both containers are reporting the same hostname and IP Address, this is how Pods are created in Kubernetes and Openshift.
 
+## Info - Red Hat Enterprise Linux Core OS (RHCOS)
+<pre>
+- is an optimized Operating System used in Kubernetes & OpenShift
+- There are 2 variants
+  - Fedora Core OS, this is generally used in Kubernetes
+  - RHCOS is used in Openshift
+- this OS is secured OS, which enforces many best practices
+- in case, we attempt to violate any best practices enforced by CoreOS, it won't let your application run
+- regular application Pods won't be allowed to run with root user/permission
+- all ports below 1024 including 1024 are reserved for Openshift's internal use
+- certain folders are marked read-only, normal application pods aren't allowed to modify them
+- certain folders can only be modified using Machine Config Operators
+</pre>  
+
 ## Info - ReplicaSet Overview
 <pre>
 - is a YAML resource/object that is stored inside etcd database
