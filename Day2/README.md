@@ -167,6 +167,28 @@
 - it is responsible to provide load-balancing functionalities to a group of Pods coming from a single application deployment 
 </pre>
 
+## Info - Pod Overview
+<pre>
+- is a logical group of related containers
+- all the containers that runs in a single Pod shares/get a single IP Address
+- all the containers that are part of a single Pod shares same Port namespace i.e ( 0 - 65535 )
+- every Pod has a secret hidden infra container called Pause Container
+- the job of Pause container is to support network features
+  - Network stack ( 7 OSI Layers )
+  - Virtual Network Card (NIC - Software Defined Network Card )
+  - IP address
+- is the smallest Unit that can be deployed into Kubernetes/Openshift
+- every Pod also has one main application container
+- every Pod may optionally have supporting containers like side-car containers that exposes the application logs produced by application container
+</pre>  
+
+## Info - ReplicaSet Overview
+
+## Info - Deployment Overview
+<pre>
+  
+</pre>
+
 ## Info - Red Hat Openshift High-level Architecture
 ![Openshift](openshiftArchitecture.png)
 
