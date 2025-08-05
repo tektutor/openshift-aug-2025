@@ -359,3 +359,10 @@ oc delete deploy/nginx
 
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/d9a88500-9455-4575-a81f-e1d2ddabe96a" />
 
+## Lab - Deploy nginx with a image that follows the Openshift image conventions(best practices)
+```
+oc project jegan
+oc create deploy nginx --image=image-registry.openshift-image-registry.svc:5000/openshift/nginx:1.27 --replicas=3
+oc get deploy,rs,po
+```
+
