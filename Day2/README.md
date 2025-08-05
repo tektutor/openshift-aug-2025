@@ -375,3 +375,13 @@ oc get deploy,rs,po
 oc get po -w
 ```
 
+## Lab - Scale up nginx deployment
+```
+oc project jegan
+oc get deploy
+oc scale deploy/nginx --replicas=5
+oc get po -w
+```
+
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/2e1084cb-4639-4719-98f9-fea5266f6a74" />
+
