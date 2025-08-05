@@ -54,6 +54,7 @@
   - AKS - Azure Kubernetes Service from Azure ( you get support for this from Microsoft )
   - GKE - you get support this from Google
 - installation is time consuming, not easy
+- application can only be deploy if you have a container image
 </pre>
 
 ## Info - Red Hat Openshift Overview
@@ -73,6 +74,12 @@
 - you will also managed Red Hat Openshift cluster from public cloud
   - ROSA ( managed Openshift Cluster from AWS )
   - ARO ( managed Openshift Cluster from Azure )
+- supports User Management
+- comes with pre-integrated monitoring tools like Prometheus & Graphana Visual Dashboards
+- comes with Internal Openshift Image Registry
+- comes with many additional features on top of Kubernetes
+  - Build, BuildConfig, Route, DeploymentConfig, etc.,
+  - S2I ( application can be deployed from source code )
 </pre>
 
 
