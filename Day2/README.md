@@ -20,4 +20,30 @@
 - some of the container orchestration platforms support CI/CD
 - all the application that must be deployed into Container Orchestration Platforms must be containerized
 - both monolithic and microservice applications are supported
+- examples
+  - Docker SWARM
+  - Kubernetes
+  - Red Hat Openshift
 </pre>
+
+## Info - Docker SWARM Overview
+<pre>
+- it is Docker's native Container Orchestration Platform
+- supports only Docker containerized application workloads
+- it is opensource
+- very light weight, hence can be setup in laptops with normal Hardware configurations
+- highly recommended for learning purpose, Dev/QA environment for light-weight setup and testing purposes
+- not production grade, hence generally no one uses them in production
+</pre>
+
+## Info - Kubernetes Overview
+<pre>
+-   
+</pre>
+
+## Info - Red Hat Openshift Overview
+<pre>
+  
+</pre>
+
+
