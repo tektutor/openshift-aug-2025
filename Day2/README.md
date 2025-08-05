@@ -350,3 +350,12 @@ Root Cause
 - nginx:latest image is using port 80, which is below 1024, port 80 is reserved for internal openshift use
 - the nginx image is attempting to create a folder /var directly which is allowed only for Machine Config Operators, hence the application is crashing due to permission denied
 </pre>
+
+## Lab - Deleting a deployment
+The below command will delete nginx deployment, replicaset(s) under it and all pods
+```
+oc delete deploy/nginx
+```
+
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/d9a88500-9455-4575-a81f-e1d2ddabe96a" />
+
