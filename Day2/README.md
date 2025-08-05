@@ -364,5 +364,6 @@ oc delete deploy/nginx
 oc project jegan
 oc create deploy nginx --image=image-registry.openshift-image-registry.svc:5000/openshift/nginx:1.27 --replicas=3
 oc get deploy,rs,po
+oc get po -w
 ```
 
