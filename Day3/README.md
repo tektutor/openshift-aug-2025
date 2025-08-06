@@ -150,7 +150,7 @@ oc get svc
 oc expose svc/nginx -o yaml --dry-run=client
 oc expose svc/nginx -o yaml --dry-run=client > nginx-route.yml
 oc get routes
-curl http://
+curl http://nginx-jegan.apps.ocp4.palmeto.org 
 ```
 
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/0f4a9c69-6226-47b9-bf33-72b5e09c912a" />
