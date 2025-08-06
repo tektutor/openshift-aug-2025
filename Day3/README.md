@@ -50,4 +50,5 @@ oc get services
 oc get service
 oc get svc
 ```
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/7f895510-bddf-488d-9915-ca4721e11d03" />
 
