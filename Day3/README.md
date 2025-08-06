@@ -51,6 +51,7 @@ oc get service
 oc get svc
 
 oc describe svc/nginx
+oc get pods -o wide
 ```
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/7f895510-bddf-488d-9915-ca4721e11d03" />
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/e3b4ae06-1ee9-480d-bd09-b3c274bdd7a5" />
@@ -60,4 +61,7 @@ oc describe svc/nginx
   - nginx is the name of the service
   - port is the service port
   - targetPort is the nginx container port at which the webserver is listening
+  - 172.30.188.99 is the IP address of the service,this is fake/virtual IP ( accesible only within the openshift cluster )
+  - 10.131.1.155:8080,10.128.2.57:8080,10.129.2.54:8080 is the Pod endpoints
+  
 </pre>
