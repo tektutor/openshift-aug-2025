@@ -83,3 +83,16 @@ oc get pods -o wide
   - the endpoint controller keeps looking for new services, service update, scale up/down events, based on the selector label in the service, it identifies the pod IP addresses:<port-we-mentioned-in the command>
   - this endpoints is connected with the service
 </pre>
+
+## Lab - Declaratively creating nginx deployment, clusterip service and route
+```
+cd ~/openshift-aug-2025
+git pull
+cd Day3/declarative-manifest-scripts/nginx
+cat nginx-deploy.yml
+
+# This assumes the nginx deploy is not there already in the cluster, so it will create the nginx deploy in your project namespace
+oc create -f nginx-deploy.yml --save-config
+
+oc get deploy,rs,po
+```
