@@ -64,7 +64,7 @@
 
 ## Info - Red Hat Openshift Overview
 <pre>
-- it is Red Hat's distributio of Kubernetes
+- it is Red Hat's distribution of Kubernetes
 - it is an enterprise product, requires license to use it
 - developed on top of Open source Google Kubernetes, but this is paid software
 - will get world-wide support from Red Hat
