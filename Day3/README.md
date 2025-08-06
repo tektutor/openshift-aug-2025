@@ -83,3 +83,188 @@ oc get pods -o wide
   - the endpoint controller keeps looking for new services, service update, scale up/down events, based on the selector label in the service, it identifies the pod IP addresses:<port-we-mentioned-in the command>
   - this endpoints is connected with the service
 </pre>
+
+## Demo  - Autogenerating the declarative manifest scripts
+```
+cd ~
+mkdir practice
+cd practice
+oc project jegan
+oc create deployment nginx \
+   --image=image-registry.openshift-image-registry.svc:5000/openshift/nginx:1.29 \
+   --replicas=3 \
+   -o yaml \
+   --dry-run=client 
+
+oc create deployment nginx \
+   --image=image-registry.openshift-image-registry.svc:5000/openshift/nginx:1.29 \
+   --replicas=3 \
+   -o yaml \
+   --dry-run=client \
+   > nginx-deploy.yml
+```
+
+## Lab - Declaratively creating nginx deployment, clusterip service and route
+
+In case you need to delete existing deployments in your project
+```
+oc project jegan
+oc delete deploy/nginx
+```
+
+Now you may proceed with nginx deployment
+```
+cd ~/openshift-aug-2025
+git pull
+cd Day3/declarative-manifest-scripts/nginx
+cat nginx-deploy.yml
+
+# This assumes the nginx deploy is not there already in the cluster, so it will create the nginx deploy in your project namespace
+oc create -f nginx-deploy.yml --save-config
+
+oc get deploy,rs,po
+```
+
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/bffdc558-eee7-4616-8c30-ed939142e138" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/8ae649cf-5d15-4909-9fcb-f8d5121fb635" />
+
+Now let's create declarative manifest yaml file to create a clusterip service 
+```
+oc get deploy
+oc expose deploy/nginx --type=ClusterIP --port=8080 -o yaml --dry-run=client
+oc expose deploy/nginx --type=ClusterIP --port=8080 -o yaml --dry-run=client > nginx-clusterip-svc.yml
+cat nginx-clusterip-svc.yml
+
+oc create -f nginx-clusterip-svc.yml --save-config
+oc get svc
+oc describe svc/nginx
+```
+
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/35b92bf3-6b43-4f44-be9a-80d5e5632688" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/27eafb0e-0914-4c40-991c-3fc10fd68de8" />
+
+
+Let's create an external route to access this application using public url
+```
+oc get svc
+oc expose svc/nginx -o yaml --dry-run=client
+oc expose svc/nginx -o yaml --dry-run=client > nginx-route.yml
+oc create -f nginx-route.yml --save-config
+oc get routes
+curl http://nginx-jegan.apps.ocp4.palmeto.org 
+```
+
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/0f4a9c69-6226-47b9-bf33-72b5e09c912a" />
+
+
+## Lab - Creating a NodePort external service in declarative style
+You need to delete the existing clusterip service we created for nginx deployment
+```
+oc project jegan
+cd ~/openshift-aug-2025
+git pull
+cd Day3/declarative-manifest-scripts/nginx
+oc delete -f nginx-clusterip-svc.yml
+```
+
+Let's create the nodeport service in declarative style
+```
+oc expose deploy/nginx --type=NodePort --port=8080 -o yaml --dry-run=client > nginx-nodeport-svc.yml
+oc create -f nginx-nodeport-svc.yml
+oc get svc
+oc describe svc/nginx
+```
+
+## Lab - Creating a LoadBalancer external service in declarative style
+You need to delete the existing nodeport service we created for nginx deployment
+```
+oc project jegan
+cd ~/openshift-aug-2025
+git pull
+cd Day3/declarative-manifest-scripts/nginx
+oc delete -f nginx-nodeport-svc.yml
+```
+
+Let's create the loadbalancer service in declarative style
+```
+oc expose deploy/nginx --type=LoadBalancer --port=8080 -o yaml --dry-run=client > nginx-lb-svc.yml
+oc create -f nginx-lb-svc.yml
+oc get svc
+oc describe svc/nginx
+```
+
+## Info - Persistent Volume(PV)
+<pre>
+- Whenever we had to store our application data, logs in a external storage, we need Persistent Volume
+- Using Pod container storage isn't recommended 
+- Pod life cycle is managed by Kubernetes/Openshift
+- we don't have control over the lifetime of Pods
+- anytime a Pod could be deleted by Kubernetes/Openshift, it could be replaced , 
+  hence using Pod container storage isn't recommended, otherwise we will lose data
+- In Kubernetes/Openshift, the cluster administrator creates multiple Persistent Volumes manually as per
+  different teams requirement/request
+  - PV will describe
+    - size of the disk in Mi, Gi
+    - type of disk
+    - storageclass (optional - nfs, aws s3, aws ebs, etc )
+    - accessMode 
+     - ReadWriteOnce
+       - All Pods from a single node can access Read and Write
+     - ReadWriteMany
+       - All Pods from a multiple nodes can access Read and Write
+</pre>
+
+## Info - Persistent Volume Claim(PVC)
+<pre>
+- any Kuberentes/Openshift Pod that requires external storage, they will have describe their requirement in terms of PVC
+- PVC will describe
+  - size of the disk
+  - type of disk
+  - storageclass ( optional )
+  - accessMode 
+    - ReadWriteOnce
+      - All Pods from a single node can access Read and Write
+    - ReadWriteMany
+      - All Pods from a multiple nodes can access Read and Write 
+- PV can be provisioned manually by the Cluster Administrators or it can be automated by creating a StorageClass
+- StorageClass can be created with your AWS account, Azure account, locally with NFS server, etc.,
+- Whenever a PVC is created, in case the PVC has mentioned one of the supported StorageClass then the PV will automatically 
+  provisioned dynamically and then it lets your application claim and use that PV
+</pre>
+
+## Info - Storage Controller
+<pre>
+- Basically , when applications request for storage by wayof PVC, storage controller is going to search the openshift cluster
+  looking for a matching Persistent Volume, if it finds an exact match, then it lets your application claim and use that
+- In case, there is no Persistent Volume matching the PVC then your Pod will be kept in Pending state until such a PV is created
+</pre>
+
+## Info - StorageClass
+<pre>
+- is a way we can provision the Persistent Volume dynamically
+- you can storage from NFS, AWS S3, AWS EBS, etc.,
+</pre>
+
+## Lab - Deploying a multipod wordpress application that connects to mariadb databse with external storage (PV & PVC)
+
+Before you proceed, you need to edit the below files and replace 'jegan' with your name. Also update the NFS Server IP address
+as per your server IP 
+<pre>
+mysql-pv.yml
+mysql-pvc.yml
+myslq-deploy.yml
+
+wordpress-pv.yml
+wordpress-pvc.yml
+wordpress-deploy.yml
+</pre>
+```
+cd ~/openshift-aug-2025
+git pull
+cd Day3/declarative-manifest-scripts/wordpress
+./deploy.sh
+```
+
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/bf5c81a3-0ef4-4905-84ad-6e9b96621d72" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/f4548357-8ccf-495d-970e-febdba1c46c4" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/f8bff4c7-50bc-41d7-b6c4-d91131cb1d72" />
