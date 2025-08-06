@@ -40,6 +40,21 @@ exit
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/b81a8fae-5ade-49fb-8c8b-1b110b87f874" />
 
 
+## Info - Kubernetes/Openshift Service
+<pre>
+- In Openshift/Kubernetes service is a way we can allow either internal only clients/softwares or external end-users 
+- Openshift/Kubernetes supports 2 types of Services
+  1. Internal Service
+     - ClusterIP Service ( kube-proxy provides load-balancing service )
+  2. External
+     - NodePort Service ( kube-proxy provides load-balancing service )
+     - LoadBalancer Service 
+       - this is generally used in public cloud environment like AWS/Azure etc.,
+       - AWS Application Load Balancer or AWS Network Load Balancer or similar LB Services offered by Azure does the load balancing
+       - kube-proxy is not involved in load-balanced
+       - i.e if you prefer an external load balancer then we go for this type of service
+</pre>
+
 ## Lab - Let's create an internal service for our nginx deployment
 ```
 oc project jegan
