@@ -38,3 +38,16 @@ cat index.html
 exit
 ```
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/b81a8fae-5ade-49fb-8c8b-1b110b87f874" />
+
+
+## Lab - Let's create an internal service for our nginx deployment
+```
+oc project jegan
+oc get deploy
+oc expose deploy/nginx --type=ClusterIP --port=8080
+
+oc get services
+oc get service
+oc get svc
+```
+
