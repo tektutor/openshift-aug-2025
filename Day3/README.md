@@ -8,6 +8,11 @@ image-registry.openshift-image-registry.svc:5000/openshift/wordpress:6.8.2
 image-registry.openshift-image-registry.svc:5000/openshift/mariadb:11.8.2
 </pre>
 
+## Demo - In case you are curious to see how etcd db stores your deploy,rs,po
+```
+
+```
+
 ## Lab - Testing your application by using Pod port-forward ( Not used in production )
 ```
 oc project jegan
