@@ -10,7 +10,15 @@ image-registry.openshift-image-registry.svc:5000/openshift/mariadb:11.8.2
 
 ## Demo - In case you are curious to see how etcd db stores your deploy,rs,po
 ```
+oc get pods -n openshift-etcd
+oc project openshift-etcd
+oc exec -it etcd-master03.ocp4.palmeto.org -- /bin/sh
 
+# Equivalent to oc get pods -n jegan
+etcdctl get "/kubernetes.io/pods/jegan" --prefix=True
+
+# Equivalent to oc get deployments -n jegan
+etcdctl get "/kubernetes.io/deployments/jegan" --prefix=True
 ```
 
 ## Lab - Testing your application by using Pod port-forward ( Not used in production )
