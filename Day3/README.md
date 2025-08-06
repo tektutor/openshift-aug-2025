@@ -64,5 +64,6 @@ oc get pods -o wide
   - targetPort is the nginx container port at which the webserver is listening
   - 172.30.188.99 is the IP address of the service,this is fake/virtual IP ( accesible only within the openshift cluster )
   - 10.131.1.155:8080,10.128.2.57:8080,10.129.2.54:8080 is the Pod endpoints
-  
+  - the endpoint controller keeps looking for new services, service update, scale up/down events, based on the selector label in the service, it identifies the pod IP addresses:<port-we-mentioned-in the command>
+  - this endpoints is connected with the service
 </pre>
