@@ -20,3 +20,13 @@ oc create deployment nginx --image=image-registry.openshift-image-registry.svc:5
 oc get pods
 ```
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/cc049316-a924-46b4-9066-860f819062d1" />
+
+## Lab - Getting inside a pod shell
+```
+oc project jegan
+oc get pods
+oc exec -it nginx-7667c5bd7f-67vqm -- /bin/bash
+cat index.html
+exit
+```
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/b81a8fae-5ade-49fb-8c8b-1b110b87f874" />
