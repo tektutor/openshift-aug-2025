@@ -53,6 +53,7 @@ exit
        - AWS Application Load Balancer or AWS Network Load Balancer or similar LB Services offered by Azure does the load balancing
        - kube-proxy is not involved in load-balanced
        - i.e if you prefer an external load balancer then we go for this type of service
+  
 </pre>
 
 ## Lab - Let's create an internal service for our nginx deployment
