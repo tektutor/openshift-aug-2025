@@ -49,6 +49,9 @@ oc expose deploy/nginx --type=ClusterIP --port=8080
 oc get services
 oc get service
 oc get svc
+
+oc describe svc/nginx
 ```
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/7f895510-bddf-488d-9915-ca4721e11d03" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/e3b4ae06-1ee9-480d-bd09-b3c274bdd7a5" />
 
