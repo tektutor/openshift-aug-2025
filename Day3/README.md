@@ -55,3 +55,9 @@ oc describe svc/nginx
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/7f895510-bddf-488d-9915-ca4721e11d03" />
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/e3b4ae06-1ee9-480d-bd09-b3c274bdd7a5" />
 
+<pre>
+- In the above screenshot
+  - nginx is the name of the service
+  - port is the service port
+  - targetPort is the nginx container port at which the webserver is listening
+</pre>
