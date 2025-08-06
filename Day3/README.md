@@ -192,3 +192,55 @@ oc create -f nginx-lb-svc.yml
 oc get svc
 oc describe svc/nginx
 ```
+
+## Info - Persistent Volume(PV)
+<pre>
+- Whenever we had to store our application data, logs in a external storage, we need Persistent Volume
+- Using Pod container storage isn't recommended 
+- Pod life cycle is managed by Kubernetes/Openshift
+- we don't have control over the lifetime of Pods
+- anytime a Pod could be deleted by Kubernetes/Openshift, it could be replaced , 
+  hence using Pod container storage isn't recommended, otherwise we will lose data
+- In Kubernetes/Openshift, the cluster administrator creates multiple Persistent Volumes manually as per
+  different teams requirement/request
+  - PV will describe
+    - size of the disk in Mi, Gi
+    - type of disk
+    - storageclass (optional - nfs, aws s3, aws ebs, etc )
+    - accessMode 
+     - ReadWriteOnce
+       - All Pods from a single node can access Read and Write
+     - ReadWriteMany
+       - All Pods from a multiple nodes can access Read and Write
+</pre>
+
+## Info - Persistent Volume Claim(PVC)
+<pre>
+- any Kuberentes/Openshift Pod that requires external storage, they will have describe their requirement in terms of PVC
+- PVC will describe
+  - size of the disk
+  - type of disk
+  - storageclass ( optional )
+  - accessMode 
+    - ReadWriteOnce
+      - All Pods from a single node can access Read and Write
+    - ReadWriteMany
+      - All Pods from a multiple nodes can access Read and Write 
+- PV can be provisioned manually by the Cluster Administrators or it can be automated by creating a StorageClass
+- StorageClass can be created with your AWS account, Azure account, locally with NFS server, etc.,
+- Whenever a PVC is created, in case the PVC has mentioned one of the supported StorageClass then the PV will automatically 
+  provisioned dynamically and then it lets your application claim and use that PV
+</pre>
+
+## Info - Storage Controller
+<pre>
+- Basically , when applications request for storage by wayof PVC, storage controller is going to search the openshift cluster
+  looking for a matching Persistent Volume, if it finds an exact match, then it lets your application claim and use that
+- In case, there is no Persistent Volume matching the PVC then your Pod will be kept in Pending state until such a PV is created
+</pre>
+
+## Info - StorageClass
+<pre>
+- is a way we can provision the Persistent Volume dynamically
+
+</pre>
