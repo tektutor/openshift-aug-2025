@@ -84,6 +84,26 @@ oc get pods -o wide
   - this endpoints is connected with the service
 </pre>
 
+## Demo  - Autogenerating the declarative manifest scripts
+```
+cd ~
+mkdir practice
+cd practice
+oc project jegan
+oc create deployment nginx \
+   --image=image-registry.openshift-image-registry.svc:5000/openshift/nginx:1.29 \
+   --replicas=3 \
+   -o yaml \
+   --dry-run=client 
+
+oc create deployment nginx \
+   --image=image-registry.openshift-image-registry.svc:5000/openshift/nginx:1.29 \
+   --replicas=3 \
+   -o yaml \
+   --dry-run=client \
+   > nginx-deploy.yml
+```
+
 ## Lab - Declaratively creating nginx deployment, clusterip service and route
 ```
 cd ~/openshift-aug-2025
