@@ -242,5 +242,5 @@ oc describe svc/nginx
 ## Info - StorageClass
 <pre>
 - is a way we can provision the Persistent Volume dynamically
-
+- you can storage from NFS, AWS S3, AWS EBS, etc.,
 </pre>
