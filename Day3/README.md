@@ -244,3 +244,27 @@ oc describe svc/nginx
 - is a way we can provision the Persistent Volume dynamically
 - you can storage from NFS, AWS S3, AWS EBS, etc.,
 </pre>
+
+## Lab - Deploying a multipod wordpress application that connects to mariadb databse with external storage (PV & PVC)
+
+Before you proceed, you need to edit the below files and replace 'jegan' with your name. Also update the NFS Server IP address
+as per your server IP 
+<pre>
+mysql-pv.yml
+mysql-pvc.yml
+myslq-deploy.yml
+
+wordpress-pv.yml
+wordpress-pvc.yml
+wordpress-deploy.yml
+</pre>
+```
+cd ~/openshift-aug-2025
+git pull
+cd Day3/declarative-manifest-scripts/wordpress
+./deploy.sh
+```
+
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/bf5c81a3-0ef4-4905-84ad-6e9b96621d72" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/f4548357-8ccf-495d-970e-febdba1c46c4" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/f8bff4c7-50bc-41d7-b6c4-d91131cb1d72" />
