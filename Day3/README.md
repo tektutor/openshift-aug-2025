@@ -126,3 +126,19 @@ oc get deploy,rs,po
 ```
 
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/bffdc558-eee7-4616-8c30-ed939142e138" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/8ae649cf-5d15-4909-9fcb-f8d5121fb635" />
+
+Now let's create declarative manifest yaml file to create a clusterip service 
+```
+oc get deploy
+oc expose deploy/nginx --type=ClusterIP --port=8080 -o yaml --dry-run=client
+oc expose deploy/nginx --type=ClusterIP --port=8080 -o yaml --dry-run=client > nginx-clusterip-svc.yml
+cat nginx-clusterip-svc.yml
+
+oc create -f nginx-clusterip-svc.yml --save-config
+oc get svc
+oc describe svc/nginx
+```
+
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/35b92bf3-6b43-4f44-be9a-80d5e5632688" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/27eafb0e-0914-4c40-991c-3fc10fd68de8" />
