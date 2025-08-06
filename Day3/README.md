@@ -142,3 +142,15 @@ oc describe svc/nginx
 
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/35b92bf3-6b43-4f44-be9a-80d5e5632688" />
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/27eafb0e-0914-4c40-991c-3fc10fd68de8" />
+
+
+Let's create an external route to access this application using public url
+```
+oc get svc
+oc expose svc/nginx -o yaml --dry-run=client
+oc expose svc/nginx -o yaml --dry-run=client > nginx-route.yml
+oc get routes
+curl http://
+```
+
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/0f4a9c69-6226-47b9-bf33-72b5e09c912a" />
