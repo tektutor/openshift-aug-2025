@@ -105,6 +105,14 @@ oc create deployment nginx \
 ```
 
 ## Lab - Declaratively creating nginx deployment, clusterip service and route
+
+In case you need to delete existing deployments in your project
+```
+oc project jegan
+oc delete deploy/nginx
+```
+
+Now you may proceed with nginx deployment
 ```
 cd ~/openshift-aug-2025
 git pull
@@ -116,3 +124,5 @@ oc create -f nginx-deploy.yml --save-config
 
 oc get deploy,rs,po
 ```
+
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/bffdc558-eee7-4616-8c30-ed939142e138" />
