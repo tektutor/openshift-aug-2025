@@ -55,6 +55,7 @@ oc get pods -o wide
 ```
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/7f895510-bddf-488d-9915-ca4721e11d03" />
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/e3b4ae06-1ee9-480d-bd09-b3c274bdd7a5" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/f37270cd-4819-4c39-83f4-ff5ad796c2f1" />
 
 <pre>
 - In the above screenshot
