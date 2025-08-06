@@ -154,3 +154,40 @@ curl http://nginx-jegan.apps.ocp4.palmeto.org
 ```
 
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/0f4a9c69-6226-47b9-bf33-72b5e09c912a" />
+
+
+## Lab - Creating a NodePort external service in declarative style
+You need to delete the existing clusterip service we created for nginx deployment
+```
+oc project jegan
+cd ~/openshift-aug-2025
+git pull
+cd Day3/declarative-manifest-scripts/nginx
+oc delete -f nginx-clusterip-svc.yml
+```
+
+Let's create the nodeport service in declarative style
+```
+oc expose deploy/nginx --type=NodePort --port=8080 -o yaml --dry-run=client > nginx-nodeport-svc.yml
+oc create -f nginx-nodeport-svc.yml
+oc get svc
+oc describe svc/nginx
+```
+
+## Lab - Creating a LoadBalancer external service in declarative style
+You need to delete the existing nodeport service we created for nginx deployment
+```
+oc project jegan
+cd ~/openshift-aug-2025
+git pull
+cd Day3/declarative-manifest-scripts/nginx
+oc delete -f nginx-nodeport-svc.yml
+```
+
+Let's create the loadbalancer service in declarative style
+```
+oc expose deploy/nginx --type=LoadBalancer --port=8080 -o yaml --dry-run=client > nginx-lb-svc.yml
+oc create -f nginx-lb-svc.yml
+oc get svc
+oc describe svc/nginx
+```
