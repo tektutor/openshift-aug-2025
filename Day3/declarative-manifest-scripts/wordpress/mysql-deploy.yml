@@ -20,7 +20,7 @@ spec:
           claimName: mysql-pvc-jegan  #Replace 'jegan' with your name
       containers:
       - name: mysql
-        image: bitnami/mariadb:latest
+        image: image-registry.openshift-image-registry.svc:5000/openshift/mariadb:11.8.2
         imagePullPolicy: IfNotPresent
 
         volumeMounts:
