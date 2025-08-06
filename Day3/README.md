@@ -149,6 +149,7 @@ Let's create an external route to access this application using public url
 oc get svc
 oc expose svc/nginx -o yaml --dry-run=client
 oc expose svc/nginx -o yaml --dry-run=client > nginx-route.yml
+oc create -f nginx-route.yml --save-config
 oc get routes
 curl http://nginx-jegan.apps.ocp4.palmeto.org 
 ```
