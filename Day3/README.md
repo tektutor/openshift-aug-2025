@@ -209,6 +209,12 @@ oc get svc
 oc describe svc/nginx
 ```
 
+Accessing the LoadBalancer service
+```
+curl http://<lb-service-external-ip-adress>:<service-port>
+curl http://192.168.100.50:8080
+```
+
 ## Info - Persistent Volume(PV)
 <pre>
 - Whenever we had to store our application data, logs in a external storage, we need Persistent Volume
