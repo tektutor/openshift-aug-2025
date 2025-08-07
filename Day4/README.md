@@ -12,9 +12,26 @@ image-registry.openshift-image-registry.svc:5000/openshift/mariadb:11.8.2
 
 ## Info - Ingress Overview
 <pre>
-  
+- is not a service
+- is a forward/routing rules
+- for this is work, your openshift cluster must have an Ingress Controller installed in it
+- some commonly used Ingress Controller are
+  1. Nginx Ingress Controller ( open source )
+  2. HAProxy Ingress Controller ( open source )
+  3. F5 ( Enterprise variant of Nginx - Paid software )
+- Let's we have HDFC Bank, and its home page is https://www.hdfcbank.com
+- Ingress host url looks like a home page of a web site
+- Assume this banking application has many microservices 
+  - Customer Microservice
+  - Statement Microservice
+  - Loans Microservice
+  - Cheque Microservice
+  - Account Microservice
+  - Authentication Microservice
+- When you are navigating to www.hdfcbank.com/login, then you wish the control forwarded to Authentication Microservice ( clusterip or nodeport or loadbalancer service )
+- When you are navigating to www.hdfcbank.com/loans, then you wish the control forwarded to Loan Microservice ( clusterip or nodeport or loadbalancer service )
+- Ingress represents a group of hetrogeneous Kubernetes/Openshift services ( NodePort, ClusterIP, etc)
 </pre>
-
 
 ## Demo - Integrating LDAP with Red Hat Openshift ( Bonus Topic )
 
