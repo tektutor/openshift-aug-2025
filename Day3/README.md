@@ -176,6 +176,19 @@ oc get svc
 oc describe svc/nginx
 ```
 
+Accessing the NodePort service
+```
+curl http://<nodeip>:<node-port>
+curl http://<node-hostname>:<node-port>
+
+curl http://master01.ocp4.palmeto.org:31765
+curl http://master02.ocp4.palmeto.org:31765
+curl http://master03.ocp4.palmeto.org:31765
+curl http://worker01.ocp4.palmeto.org:31765
+curl http://worker02.ocp4.palmeto.org:31765
+curl http://worker03.ocp4.palmeto.org:31765
+```
+
 ## Lab - Creating a LoadBalancer external service in declarative style
 You need to delete the existing nodeport service we created for nginx deployment
 ```
