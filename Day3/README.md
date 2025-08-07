@@ -333,7 +333,7 @@ cd wordpress
 # edit the values.yaml and customize your changes ( nfs_server_ip, your_name, nfs_wordpress_path, nfs_mysql_path, etc., ) 
 cd templates
 rm *
-rm -rf test
+rm -rf tests
 cd ../../
 cp scripts/* wordpress/templates
 tree wordpress
