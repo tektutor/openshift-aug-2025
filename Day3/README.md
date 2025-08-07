@@ -324,7 +324,7 @@ You need to delete your existing wordpress deployment including the mysql before
 ```
 cd ~/openshift-aug-2025
 git pull
-cd Day3/helm-charts
+cd Day3/helm-chart
 tree scripts
 helm create wordpress
 cp values.yaml wordpress
