@@ -139,5 +139,5 @@ oc get oauth cluster -o yaml
 oc get pods -n openshift-authentication-operator
 
 # Test login via web console or CLI
-oc login --username=jegan --password=root@123
+oc login --username=jegan --password=root@123 --insecure-skip-tls-verify
 ```
