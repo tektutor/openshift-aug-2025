@@ -19,12 +19,11 @@ spec:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
-          preference:
-          - matchExpressions:
-            - key: disk
-              operator: In
-              values:
-              - ssd
+            - matchExpressions:
+              - key: disk
+                operator: In
+                values:
+                - ssd
       containers:
       - image: image-registry.openshift-image-registry.svc:5000/openshift/nginx:1.29
         name: nginx
