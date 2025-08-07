@@ -3,8 +3,10 @@
 ## Info - Container Images supported by our Lab
 <pre>
 image-registry.openshift-image-registry.svc:5000/openshift/spring-ms:1.0
-
-  
+image-registry.openshift-image-registry.svc:5000/openshift/nginx:1.27
+image-registry.openshift-image-registry.svc:5000/openshift/nginx:1.29
+image-registry.openshift-image-registry.svc:5000/openshift/wordpress:6.8.2
+image-registry.openshift-image-registry.svc:5000/openshift/mariadb:11.8.2
 </pre>  
 
 
