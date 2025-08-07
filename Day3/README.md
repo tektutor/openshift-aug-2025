@@ -290,3 +290,29 @@ cd Day3/declarative-manifest-scripts/wordpress
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/bf5c81a3-0ef4-4905-84ad-6e9b96621d72" />
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/f4548357-8ccf-495d-970e-febdba1c46c4" />
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/f8bff4c7-50bc-41d7-b6c4-d91131cb1d72" />
+
+## Lab - Deploy multi-pod wordpress and mariadb pulling configurations from configmap while retreiving credentials from secrets
+```
+cd ~/openshift-aug-2025
+git pull
+cd Day3/declarative-manifest-scripts/wordpress-with-configmaps-and-secrets
+./deploy.sh
+```
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/bf5c81a3-0ef4-4905-84ad-6e9b96621d72" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/f4548357-8ccf-495d-970e-febdba1c46c4" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/f8bff4c7-50bc-41d7-b6c4-d91131cb1d72" />
+
+## Info - HELM Overview
+<pre>
+- HELM is a package manager for Kuberentes and Openshift
+- Using Helm package manager we can install/uninstall/upgrade application with Kubernetes/Openshift
+- Helm has opensource repository website from where one could download available helm charts and install onto our cluster
+- Helm can also be used to package our application manifest scripts and bundle as Helm Charts ( tar ball - compressed file with a specific directory structure )
+</pre>
+
+## Demo - Installing Helm
+```
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
+```
