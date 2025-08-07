@@ -301,3 +301,11 @@ cd Day3/declarative-manifest-scripts/wordpress-with-configmaps-and-secrets
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/bf5c81a3-0ef4-4905-84ad-6e9b96621d72" />
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/f4548357-8ccf-495d-970e-febdba1c46c4" />
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/f8bff4c7-50bc-41d7-b6c4-d91131cb1d72" />
+
+## Info - HELM Overview
+<pre>
+- HELM is a package manager for Kuberentes and Openshift
+- Using Helm package manager we can install/uninstall/upgrade application with Kubernetes/Openshift
+- Helm has opensource repository website from where one could download available helm charts and install onto our cluster
+- Helm can also be used to package our application manifest scripts and bundle as Helm Charts ( tar ball - compressed file with a specific directory structure )
+</pre>
