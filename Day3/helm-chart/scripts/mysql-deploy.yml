@@ -17,7 +17,7 @@ spec:
       volumes:
       - name: mysql-storage
         persistentVolumeClaim:
-          claimName: mysql-pvc-jegan  #Replace 'jegan' with your name
+          claimName: mysql-pvc{{.Values.your_name}}
       containers:
       - name: mysql
         image: image-registry.openshift-image-registry.svc:5000/openshift/mariadb:11.8.2
