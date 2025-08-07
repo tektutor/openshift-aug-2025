@@ -310,3 +310,33 @@ oc get pods -o wide
 # Let's delete the deployment
 oc delete -f nginx-preferred-deploy.yml
 ```
+
+## Info - Securing Openshift Applications
+<pre>
+- Use Role-Based Access Control (RBAC)
+  - Define roles and permissions for users and service accounts
+  - Grant the least privilege necessary
+- Network Policies
+  - Use Openshift Network Policies to restrict pod-to-pod and pod external communications
+- Secure Secrets Managements
+  - Store sensitive data (passwords, tokens) in Openshift Secrets, Hashicorp vault, etc.,
+  - Avoid hardcoding secrets in images or environment variables
+- TLS 
+  - use HTTPs for all routes
+  - enable TLS between services when possible
+- Image Security
+  - Use trusted, signed and regularly updated container images
+  - Scan images for vulnerabilities
+- Pod Security
+  - Use Security Context Contraints (SCC) to limit pod privileges
+  - Avoid running containers are root
+- Resource Quotas and Limits
+  - Set resource quotas and limits to prevent resource exhaustion
+- Audit and Logging
+  - Enable audit logging for cluster and application events
+  - Monitor logs for suspicious activity
+- Regular updates
+  - keep openshift and applicaiton dependencies up to date
+- Automated Testing
+  - Integrate security testing into your CI/CD pipeline
+</pre>
