@@ -49,12 +49,12 @@ spec:
 
         - name: WORDPRESS_DATABASE_HOST
           valueFrom: 
-          configMapKeyRef:
-            name: wordpress-configuration
-            key: db_host
+            configMapKeyRef:
+              name: wordpress-configuration
+              key: db_host
 
         - name: WORDPRESS_DATABASE_PORT
           valueFrom: 
-          configMapKeyRef:
-            name: wordpress-configuration
-            key: db_port
+            configMapKeyRef:
+              name: wordpress-configuration
+              key: db_port
