@@ -6,7 +6,7 @@ metadata:
     name: {{.Values.your_name}} 
 spec:
   capacity:
-    storage:  
+    storage: {{.Values.mysql_pv_size}}  
   volumeMode: Filesystem
   accessModes:
   - ReadWriteOnce  # All the pods from any node in the openshift cluster can read & write this external storage
