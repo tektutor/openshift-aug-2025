@@ -58,7 +58,7 @@ ldapadd -x -D "cn=admin,dc=palmeto,dc=org" -W -f /tmp/base.ldif
 ldapadd -x -D "cn=admin,dc=palmeto,dc=org" -W -f /tmp/user.ldif
 ```
 
-Integrate OpenLDAP with OpenShift v4.19
+Integrate OpenLDAP with OpenShift v4.19 (ldap-idp.yaml)
 ```
 apiVersion: config.openshift.io/v1
 kind: OAuth
@@ -106,7 +106,7 @@ oc create configmap ldap-ca \
 
 Create the LDAP Identify Provider Configuration
 ```
-oc apply -f /tmp/ldap-idp.yaml
+oc apply -f ldap-idp.yaml
 ```
 
 Create ClusterRoleBinding for LDAP users
