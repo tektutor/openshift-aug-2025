@@ -255,3 +255,58 @@ http://tektutor.apps.ocp4.palmeto.org/hello
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/5c9a4f75-9856-4fd8-855d-e113956373d2" />
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/c8c41f27-0ce0-4fc3-828e-5e5d634ed76f" />
 
+
+## Lab - Scheduler Node Affininty
+
+<pre>
+- There are 2 types of Node Affininty
+  1. Preferred
+     - Scheduler will attempt to schedule the pods onto to nodes that meet the criteria mentioned
+     - in case Scheduler is not able to find such nodes, it will normally deploy them into any nodes irrespective they meet the criteria or not 
+  2. Required
+     - SCheduler will only schedule the pods onto the nodes that meet the criteria
+     - Until such nodes are found, the Pod will be kept in Pending state
+</pre>
+
+Preferred Nodeaffinity
+```
+cd ~/openshift-aug-2025
+git pull
+cd Day4/scheduler-node-affinity
+
+# First list and check if there are any nodes that has SSD disk, assuming no nodes meets the criteria
+oc get nodes -l disk=ssd
+
+oc apply -f nginx-preferred-deploy.yml
+# We understood the scheduler will go ahead and deploy pods on any node in case no nodes meets such criteria
+oc get pods -o wide
+# Let's delete the deployment
+oc delete -f nginx-preferred-deploy.yml
+
+#Let's label worker03 with disk=ssd label
+oc label node worker03.ocp4.palmeto.org disk=ssd
+oc get nodes -l disk=ssd
+oc apply -f nginx-preferred-deploy.yml
+# We can see schduler did respect the application scheduling preference
+oc get pods -o wide
+# Let's delete the deployment
+oc delete -f nginx-preferred-deploy.yml
+
+# Let's deploy nginx-required-deploy.yml
+oc get nodes -l disk=ssd
+oc apply -f nginx-required-deploy.yml
+# We can see all 3 pods are deployed onto worker03 as worker03 is the only node that meets the criteria
+oc get pods -o wide
+# Let's delete the deployment
+oc delete -f nginx-preferred-deploy.yml
+
+
+#Now, let's remove the label from worker03 node
+oc label node worker03.ocp4.palmeto.org disk-
+oc get nodes -l disk=ssd
+oc apply -f nginx-required-deploy.yml
+# We can see 3 Pods are in Pending state as no nodes meet the criteria imposed by your deployment
+oc get pods -o wide
+# Let's delete the deployment
+oc delete -f nginx-preferred-deploy.yml
+```
