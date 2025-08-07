@@ -43,18 +43,18 @@ spec:
 
         - name: WORDPRESS_DATABASE_NAME
           valueFrom:
-            configKeyRef:
+            configMapKeyRef:
               name: wordpress-configuration
               key: db_name
 
         - name: WORDPRESS_DATABASE_HOST
           valueFrom: 
-          configKeyRef:
+          configMapKeyRef:
             name: wordpress-configuration
             key: db_host
 
         - name: WORDPRESS_DATABASE_PORT
           valueFrom: 
-          configKeyRef:
+          configMapKeyRef:
             name: wordpress-configuration
             key: db_port

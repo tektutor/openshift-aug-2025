@@ -36,6 +36,6 @@ spec:
 
         - name: MARIADB_DATABASE
           valueFrom: 
-             configKeyRef:
+             configMapKeyRef:
                name: wordpress-configurations
                key: db_name
