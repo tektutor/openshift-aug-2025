@@ -192,3 +192,61 @@ oc login --username=jegan --password='root@123' --insecure-skip-tls-verify
 # In another terminal, monitor authentication attempts
 oc logs -n openshift-authentication deployment/oauth-openshift -f | grep -E "(jegan|ldap|bind|authentication|error)"
 ```
+
+## Lab - Ingress
+
+Let's delete our existing project
+```
+oc delete project jegan
+```
+
+Let's create a new project
+```
+oc new-project jegan
+```
+
+Let's deploy two applications
+```
+oc create deploy nginx --image=image-registry.openshift-image-registry.svc:5000/openshift/nginx:1.29 --replicas=3
+oc create deploy hello --image=image-registry.openshift-image-registry.svc:5000/openshift/spring-ms:1.0 --replicas=3
+
+oc expose deploy/nginx --port=8080
+oc expose deploy/hello --port=8080
+```
+
+Let's create an ingress ingress.yml file
+<pre>
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tektutor
+  annotations:
+    haproxy.router.openshift.io/rewrite-target: /
+spec:
+  rules:
+    - host: tektutor.apps.ocp4.palmeto.org
+      http:
+        paths:
+        - backend:
+            service:
+              name: nginx
+              port:
+                number: 8080
+          path: /nginx
+          pathType: Prefix
+        - backend:
+            service:
+              name: hello 
+              port:
+                number: 8080
+          path: /hello
+          pathType: Prefix  
+</pre>
+
+Let's create the ingress
+```
+oc apply -f ingress.yml
+oc get ingress
+
+curl http://
+```
