@@ -39,7 +39,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: wordpress-credentials
-              key: username
+              key: password 
 
         - name: WORDPRESS_DATABASE_NAME
           valueFrom:
