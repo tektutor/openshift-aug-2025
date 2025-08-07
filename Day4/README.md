@@ -130,12 +130,32 @@ oc apply -f /tmp/ldap-admin-binding.yml
 
 Verify the integration
 ```
+#Update password
+ldappasswd -x -H ldap://192.168.10.200:389 -D "cn=admin,dc=palmeto,dc=org" -W -S "uid=jegan,ou=people,dc=palmeto,dc=org"
+
+# Test authentication after password update
+ldapwhoami -x -H ldap://192.168.10.200:389 -D "uid=jegan,ou=people,dc=palmeto,dc=org" -W
+# Enter password: root@123
+
+#Alternate approach
+slappasswd -s "root@123"
+
+
 # Check OAuth configuration
-oc get oauth cluster -o yaml
+oc get oauth cluster -o yaml | grep -A 20 "ldap:"
 
 # Check authentication operators
 oc get pods -n openshift-authentication-operator
 
-# Test login via web console or CLI
-oc login --username=jegan --password=root@123 --insecure-skip-tls-verify
+# If still showing ldaps://, reapply the configuration
+oc apply -f /tmp/ldap-non-ssl.yaml
+
+# Wait for OAuth configuration to propagate (2-3 minutes)
+sleep 180
+
+# Try OpenShift login
+oc login --username=jegan --password='root@123' --insecure-skip-tls-verify
+
+# In another terminal, monitor authentication attempts
+oc logs -n openshift-authentication deployment/oauth-openshift -f | grep -E "(jegan|ldap|bind|authentication|error)"
 ```
