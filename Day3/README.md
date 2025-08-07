@@ -288,5 +288,13 @@ cd Day3/declarative-manifest-scripts/wordpress
 ```
 
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/bf5c81a3-0ef4-4905-84ad-6e9b96621d72" />
+
+## Lab - Deploy multi-pod wordpress and mariadb pulling configurations from configmap while retreiving credentials from secrets
+```
+cd ~/openshift-aug-2025
+git pull
+cd Day3/declarative-manifest-scripts/wordpress-with-configmaps-and-secrets
+./deploy.sh
+```
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/f4548357-8ccf-495d-970e-febdba1c46c4" />
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/f8bff4c7-50bc-41d7-b6c4-d91131cb1d72" />
