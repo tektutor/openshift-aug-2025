@@ -318,6 +318,9 @@ chmod 700 get_helm.sh
 ```
 
 ## Lab - Creating a custom helm chart to package our wordpress, mysql multipod application
+You need to delete your existing wordpress deployment including the mysql before proceeding.  Rather you could delete your project and create a new project.
+
+
 ```
 cd ~/openshift-aug-2025
 git pull
