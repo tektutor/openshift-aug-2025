@@ -309,3 +309,10 @@ cd Day3/declarative-manifest-scripts/wordpress-with-configmaps-and-secrets
 - Helm has opensource repository website from where one could download available helm charts and install onto our cluster
 - Helm can also be used to package our application manifest scripts and bundle as Helm Charts ( tar ball - compressed file with a specific directory structure )
 </pre>
+
+## Demo - Installing Helm
+```
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
+```
