@@ -82,10 +82,8 @@ spec:
       bindDN: "cn=admin,dc=palmeto,dc=org"
       bindPassword:
         name: ldap-secret
-      ca:
-        name: ldap-ca
-      insecure: false
-      url: "ldaps://192.168.10.200:636/ou=people,dc=palmeto,dc=org?uid"
+      insecure: true
+      url: "ldap://192.168.10.200:389/ou=people,dc=palmeto,dc=org?uid"
 ```
 
 Create LDAP bind password secret
