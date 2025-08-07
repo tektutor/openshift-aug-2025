@@ -259,7 +259,7 @@ http://tektutor.apps.ocp4.palmeto.org/hello
 ## Lab - Scheduler Node Affinity
 
 <pre>
-- There are 2 types of Node Affininty
+- There are 2 types of Node Affinity
   1. Preferred
      - Scheduler will attempt to schedule the pods onto to nodes that meet the criteria mentioned
      - in case Scheduler is not able to find such nodes, it will normally deploy them into any nodes irrespective they meet the criteria or not 
