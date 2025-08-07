@@ -256,7 +256,7 @@ http://tektutor.apps.ocp4.palmeto.org/hello
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/c8c41f27-0ce0-4fc3-828e-5e5d634ed76f" />
 
 
-## Lab - Scheduler Node Affininty
+## Lab - Scheduler Node Affinity
 
 <pre>
 - There are 2 types of Node Affininty
