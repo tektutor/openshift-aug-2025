@@ -248,5 +248,10 @@ Let's create the ingress
 oc apply -f ingress.yml
 oc get ingress
 
-curl http://
+http://tektutor.apps.ocp4.palmeto.org/nginx
+http://tektutor.apps.ocp4.palmeto.org/hello
 ```
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/2b7658dd-8a42-44ca-91c7-3d74d1edf52a" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/5c9a4f75-9856-4fd8-855d-e113956373d2" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/c8c41f27-0ce0-4fc3-828e-5e5d634ed76f" />
+
