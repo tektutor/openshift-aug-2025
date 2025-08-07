@@ -25,7 +25,7 @@ etcdctl get "/kubernetes.io/deployments/jegan" --prefix=True
 ```
 oc project jegan
 oc create deployment nginx --image=image-registry.openshift-image-registry.svc:5000/openshift/nginx:1.29 --replicas=3
-oc port-forward <your-pod-name> 9999:8080
+oc port-forward pod/<your-pod-name> 9999:8080
 oc get pods
 ```
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/cc049316-a924-46b4-9066-860f819062d1" />
