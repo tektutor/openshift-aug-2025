@@ -1,5 +1,19 @@
 # Day 4
 
+## Info - Container Images supported by our Lab
+<pre>
+image-registry.openshift-image-registry.svc:5000/openshift/spring-ms:1.0
+
+  
+</pre>  
+
+
+## Info - Ingress Overview
+<pre>
+  
+</pre>
+
+
 ## Demo - Integrating LDAP with Red Hat Openshift ( Bonus Topic )
 
 Install OpenLDAP in Ubuntu
