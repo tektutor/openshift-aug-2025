@@ -340,3 +340,6 @@ helm install wordpress wordpress-0.1.0.tgz
 helm list
 oc get pods -w
 ```
+
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/1f56d6df-4b3e-4eca-9f14-ead920edac9b" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/2f53029d-9723-40e3-b7ef-19c3916c802a" />
