@@ -316,3 +316,27 @@ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scrip
 chmod 700 get_helm.sh
 ./get_helm.sh
 ```
+
+## Lab - Creating a custom helm chart to package our wordpress, mysql multipod application
+```
+cd ~/openshift-aug-2025
+git pull
+cd Day3/helm-charts
+tree scripts
+helm create wordpress
+cp values.yaml wordpress
+tree wordpress
+cd wordpress 
+# edit the values.yaml and customize your changes ( nfs_server_ip, your_name, nfs_wordpress_path, nfs_mysql_path, etc., ) 
+cd templates
+rm *
+rm -rf test
+cd ../../
+cp scripts/* wordpress/templates
+tree wordpress
+helm package wordpress
+ls
+helm install wordpress wordpress-0.1.0.tgz
+helm list
+oc get pods -w
+```
