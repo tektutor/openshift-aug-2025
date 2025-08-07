@@ -159,7 +159,9 @@ curl http://nginx-jegan.apps.ocp4.palmeto.org
 
 
 ## Lab - Creating a NodePort external service in declarative style
-You need to delete the existing clusterip service we created for nginx deployment
+You need to delete the existing clusterip service we created for nginx deployment.
+
+Kubernetes and Openshift has reserved ports in the range 30000 to 32767 for the purpose of NodePort services, when you don't mention the nodeport explicitly while creating the nodeport services, openshift will automatically pick one non-conflicting port in the range 30000-32767 which is available on the nodes of the openshift cluster and assign that to your service.
 ```
 oc project jegan
 cd ~/openshift-aug-2025
