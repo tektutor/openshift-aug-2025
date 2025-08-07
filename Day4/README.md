@@ -1,5 +1,38 @@
 # Day 4
 
+## Info - Container Images supported by our Lab
+<pre>
+image-registry.openshift-image-registry.svc:5000/openshift/spring-ms:1.0
+image-registry.openshift-image-registry.svc:5000/openshift/nginx:1.27
+image-registry.openshift-image-registry.svc:5000/openshift/nginx:1.29
+image-registry.openshift-image-registry.svc:5000/openshift/wordpress:6.8.2
+image-registry.openshift-image-registry.svc:5000/openshift/mariadb:11.8.2
+</pre>  
+
+
+## Info - Ingress Overview
+<pre>
+- is not a service
+- is a forward/routing rules
+- for this is work, your openshift cluster must have an Ingress Controller installed in it
+- some commonly used Ingress Controller are
+  1. Nginx Ingress Controller ( open source )
+  2. HAProxy Ingress Controller ( open source )
+  3. F5 ( Enterprise variant of Nginx - Paid software )
+- Let's we have HDFC Bank, and its home page is https://www.hdfcbank.com
+- Ingress host url looks like a home page of a web site
+- Assume this banking application has many microservices 
+  - Customer Microservice
+  - Statement Microservice
+  - Loans Microservice
+  - Cheque Microservice
+  - Account Microservice
+  - Authentication Microservice
+- When you are navigating to www.hdfcbank.com/login, then you wish the control forwarded to Authentication Microservice ( clusterip or nodeport or loadbalancer service )
+- When you are navigating to www.hdfcbank.com/loans, then you wish the control forwarded to Loan Microservice ( clusterip or nodeport or loadbalancer service )
+- Ingress represents a group of hetrogeneous Kubernetes/Openshift services ( NodePort, ClusterIP, etc)
+</pre>
+
 ## Demo - Integrating LDAP with Red Hat Openshift ( Bonus Topic )
 
 Install OpenLDAP in Ubuntu
@@ -159,3 +192,66 @@ oc login --username=jegan --password='root@123' --insecure-skip-tls-verify
 # In another terminal, monitor authentication attempts
 oc logs -n openshift-authentication deployment/oauth-openshift -f | grep -E "(jegan|ldap|bind|authentication|error)"
 ```
+
+## Lab - Ingress
+
+Let's delete our existing project
+```
+oc delete project jegan
+```
+
+Let's create a new project
+```
+oc new-project jegan
+```
+
+Let's deploy two applications
+```
+oc create deploy nginx --image=image-registry.openshift-image-registry.svc:5000/openshift/nginx:1.29 --replicas=3
+oc create deploy hello --image=image-registry.openshift-image-registry.svc:5000/openshift/spring-ms:1.0 --replicas=3
+
+oc expose deploy/nginx --port=8080
+oc expose deploy/hello --port=8080
+```
+
+Let's create an ingress ingress.yml file
+<pre>
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tektutor
+  annotations:
+    haproxy.router.openshift.io/rewrite-target: /
+spec:
+  rules:
+    - host: tektutor.apps.ocp4.palmeto.org
+      http:
+        paths:
+        - backend:
+            service:
+              name: nginx
+              port:
+                number: 8080
+          path: /nginx
+          pathType: Prefix
+        - backend:
+            service:
+              name: hello 
+              port:
+                number: 8080
+          path: /hello
+          pathType: Prefix  
+</pre>
+
+Let's create the ingress
+```
+oc apply -f ingress.yml
+oc get ingress
+
+http://tektutor.apps.ocp4.palmeto.org/nginx
+http://tektutor.apps.ocp4.palmeto.org/hello
+```
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/2b7658dd-8a42-44ca-91c7-3d74d1edf52a" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/5c9a4f75-9856-4fd8-855d-e113956373d2" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/c8c41f27-0ce0-4fc3-828e-5e5d634ed76f" />
+

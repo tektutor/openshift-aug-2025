@@ -318,10 +318,13 @@ chmod 700 get_helm.sh
 ```
 
 ## Lab - Creating a custom helm chart to package our wordpress, mysql multipod application
+You need to delete your existing wordpress deployment including the mysql before proceeding.  Rather you could delete your project and create a new project.
+
+
 ```
 cd ~/openshift-aug-2025
 git pull
-cd Day3/helm-charts
+cd Day3/helm-chart
 tree scripts
 helm create wordpress
 cp values.yaml wordpress
@@ -330,7 +333,7 @@ cd wordpress
 # edit the values.yaml and customize your changes ( nfs_server_ip, your_name, nfs_wordpress_path, nfs_mysql_path, etc., ) 
 cd templates
 rm *
-rm -rf test
+rm -rf tests
 cd ../../
 cp scripts/* wordpress/templates
 tree wordpress
@@ -340,3 +343,10 @@ helm install wordpress wordpress-0.1.0.tgz
 helm list
 oc get pods -w
 ```
+
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/1f56d6df-4b3e-4eca-9f14-ead920edac9b" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/2f53029d-9723-40e3-b7ef-19c3916c802a" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/4c366f4c-2590-4d68-a297-be923814b2e9" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/6d66bbaa-99b0-4d5a-8d2e-29823101069b" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/0047681a-ee34-41db-be3b-54f4642f6939" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/5cab84ad-9b2b-46c3-87af-e0c1c7315bbb" />
