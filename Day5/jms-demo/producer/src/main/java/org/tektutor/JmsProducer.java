@@ -2,27 +2,45 @@ package org.tektutor;
 
 import javax.jms.*;
 import org.apache.activemq.artemis.jms.client.ActiveMQConnectionFactory;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-public class JmsProducer {
+public class JmsProducerContinuous {
     public static void main(String[] args) throws Exception {
-        // Use internal service name for in-cluster communication
+        // Use internal service for in-cluster communication
         String brokerUrl = "tcp://amq-broker-core-0-svc:61616";
         String user = System.getenv("AMQ_USER");
         String password = System.getenv("AMQ_PASSWORD");
 
-        // Fallback to hardcoded values if env vars not set
+        // Fallback values
         if (user == null) user = "gsFZ8w5b";
         if (password == null) password = "DtLY5U1h";
 
-        // For local testing, use localhost
-        // String brokerUrl = "tcp://localhost:61616";
+        System.out.println("Starting continuous producer in OpenShift...");
+        System.out.println("Connecting to: " + brokerUrl);
 
         try (ActiveMQConnectionFactory cf = new ActiveMQConnectionFactory(brokerUrl, user, password);
              JMSContext context = cf.createContext()) {
 
             Queue queue = context.createQueue("order.queue");
-            context.createProducer().send(queue, "Order #1234 created");
-            System.out.println("Message sent successfully!");
+            JMSProducer producer = context.createProducer();
+            
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            int messageCount = 1;
+            
+            while (true) {
+                String timestamp = LocalDateTime.now().format(formatter);
+                String messageText = String.format("Order #%d created at %s [from OpenShift]", messageCount, timestamp);
+                
+                producer.send(queue, messageText);
+                System.out.println("Sent message " + messageCount + ": " + messageText);
+                
+                messageCount++;
+                Thread.sleep(3000); // 3 seconds delay
+            }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }
