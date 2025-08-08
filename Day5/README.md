@@ -28,7 +28,7 @@ UDP
 - Lower performance but maximum compatibility
 </pre>
 
-Architecture
+#### Architecture
 <pre>
 ┌─────────────────────────────────────┐    ┌─────────────────────────────────────┐
 │              Node A                 │    │              Node B                 │
@@ -88,7 +88,7 @@ Architecture
                                 (10.0.1.0/24)
 </pre>
 
-## Packet Flow: Pod1 to Pod3 with Flannel VXLAN
+#### Packet Flow: Pod1 to Pod3 with Flannel VXLAN
 Detailed Packet Capture Analysis
 Scenario: Pod1 (10.244.1.10) pings Pod3 (10.244.2.10)
 ```
@@ -370,6 +370,16 @@ Architecture Components
 - Legacy applications that need specific networking features
 - Development environments requiring flexible networking
 - Comparison with OpenShift SDN
+
+#### Limitations
+- Performance overhead especially with encryption enabled
+- Additional complexity compared to default OpenShift SDN
+- Resource consumption from running additional networking components
+- Troubleshooting complexity due to overlay networking
+- Weave Network provides a robust networking solution for OpenShift,
+  particularly useful when advanced networking features like - encryption and comprehensive
+  network policies are required.
+  
 <pre>
 +------------------------+---------------------------+---------------------------+
 | Feature                | Weave Network             | OpenShift SDN             |
