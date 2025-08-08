@@ -501,3 +501,224 @@ Choose Weave when:
 - Require good troubleshooting tools
 - Need automatic network discovery
 </pre>
+
+## Demo - Install Red Hat AMQ Broker Operator
+```
+mkdir -p openshift-jms-setup/{operators,broker,queues,application}
+cd openshift-jms-setup
+```
+
+Install AMQ Broker Operator - operators/amq-operator-subscription.yaml
+<pre>
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: amq-broker-rhel8
+  namespace: openshift-operators
+spec:
+  channel: 7.11.x
+  name: amq-broker-rhel8
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace  
+</pre>
+
+Create AMQ Broker Instance broker/amq-broker-instance.yaml
+<pre>
+apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemis
+metadata:
+  name: amq-broker
+  namespace: jms-demo
+spec:
+  deploymentPlan:
+    size: 1
+    image: registry.redhat.io/amq7/amq-broker-rhel8:7.11
+    requireLogin: false
+    persistenceEnabled: true
+  console:
+    expose: true
+  acceptors:
+    - name: amqp
+      protocols: amqp
+      port: 5672
+    - name: core
+      protocols: core
+      port: 61616  
+</pre>
+
+Create Queues - queues/order-queue.yaml
+<pre>
+apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemisAddress
+metadata:
+  name: order-queue
+  namespace: jms-demo
+spec:
+  addressName: order.queue
+  queueName: order.queue
+  routingType: anycast  
+</pre>
+
+Create Topics - queues/notification-topic.yaml
+<pre>
+apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemisAddress
+metadata:
+  name: notification-topic
+  namespace: jms-demo
+spec:
+  addressName: notification.topic
+  queueName: notification.topic
+  routingType: multicast  
+</pre>
+
+Create Application Configuration - application/configmap.yaml
+<pre>
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: jms-app-config
+  namespace: jms-demo
+data:
+  application.yml: |
+    spring:
+      activemq:
+        broker-url: tcp://amq-broker-hdls-svc:61616
+        user: admin
+        password: admin
+      jms:
+        pub-sub-domain: false
+    logging:
+      level:
+        com.example.jms: DEBUG  
+</pre>
+
+Deploy JMS application - application/deployment.yaml
+<pre>
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jms-app
+  namespace: jms-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jms-app
+  template:
+    metadata:
+      labels:
+        app: jms-app
+    spec:
+      containers:
+      - name: jms-app
+        image: your-registry/jms-app:latest
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: config
+          mountPath: /app/config
+        env:
+        - name: SPRING_CONFIG_LOCATION
+          value: /app/config/application.yml
+      volumes:
+      - name: config
+        configMap:
+          name: jms-app-config  
+</pre>
+
+JMS application Service - application/service.yaml
+<pre>
+apiVersion: v1
+kind: Service
+metadata:
+  name: jms-app-service
+  namespace: jms-demo
+spec:
+  selector:
+    app: jms-app
+  ports:
+  - port: 8080
+    targetPort: 8080
+  type: ClusterIP  
+</pre>
+
+
+Installation script
+<pre>
+#!/bin/bash
+
+echo "=== Installing JMS Application on OpenShift ==="
+
+# Step 1: Install AMQ Broker Operator
+echo "1. Installing AMQ Broker Operator..."
+oc apply -f operators/amq-operator-subscription.yaml
+
+# Wait for operator to be ready
+echo "Waiting for operator to be ready..."
+sleep 30
+
+# Step 2: Create namespace and broker
+echo "2. Creating namespace and AMQ Broker..."
+oc new-project jms-demo --display-name="JMS Demo Application"
+oc apply -f broker/amq-broker-instance.yaml
+
+# Wait for broker to be ready
+echo "Waiting for broker to be ready..."
+oc wait --for=condition=Ready activemqartemis/amq-broker --timeout=300s
+
+# Step 3: Create queues and topics
+echo "3. Creating queues and topics..."
+oc apply -f queues/order-queue.yaml
+oc apply -f queues/notification-topic.yaml
+
+# Step 4: Deploy application
+echo "4. Deploying JMS application..."
+oc apply -f application/configmap.yaml
+oc apply -f application/deployment.yaml
+oc apply -f application/service.yaml
+
+echo "=== Installation Complete ==="
+echo "Check status with: oc get pods -n jms-demo"
+echo "View AMQ Console: oc get route amq-broker-wconsj-0-svc-rte -n jms-demo"  
+</pre>
+
+Verification script
+<pre>
+#!/bin/bash
+
+echo "=== Verifying JMS Installation ==="
+
+echo "1. Checking operator installation..."
+oc get csv -n openshift-operators | grep amq-broker
+
+echo "2. Checking broker status..."
+oc get activemqartemis -n jms-demo
+
+echo "3. Checking broker pods..."
+oc get pods -n jms-demo | grep amq-broker
+
+echo "4. Checking queues and topics..."
+oc get activemqartemisaddress -n jms-demo
+
+echo "5. Checking application pods..."
+oc get pods -n jms-demo | grep jms-app
+
+echo "6. Checking services..."
+oc get svc -n jms-demo
+
+echo "=== Verification Complete ==="  
+</pre>
+
+
+Make the script executable
+```
+chmod +x install.sh verify.sh
+./install.sh
+./verify.sh
+
+# Access AMQ Console
+oc get routes -n jms-demo
+```
+
+
