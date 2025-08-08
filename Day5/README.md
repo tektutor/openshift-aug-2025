@@ -419,3 +419,85 @@ Architecture Components
 |                        | support                   |                           |
 +------------------------+---------------------------+---------------------------+
 </pre>
+
+## Flannel vs Calico vs Weave
+<pre>
++------------------------+---------------------------+---------------------------+---------------------------+
+| Feature                | Calico                    | Flannel                   | Weave                     |
++------------------------+---------------------------+---------------------------+---------------------------+
+| Overlay Technology     | BGP (L3), VXLAN, IPIP    | VXLAN, UDP, host-gw       | VXLAN, UDP                |
++------------------------+---------------------------+---------------------------+---------------------------+
+| Network Policies       | Full NetworkPolicy +      | No native support         | Full NetworkPolicy        |
+|                        | Calico policies           |                           | support                   |
++------------------------+---------------------------+---------------------------+---------------------------+
+| Encryption             | WireGuard, IPSec          | No native encryption      | Built-in NaCl encryption  |
++------------------------+---------------------------+---------------------------+---------------------------+
+| Performance            | Excellent (native BGP)    | Good (simple overlay)     | Good (with encryption     |
+|                        |                           |                           | overhead)                 |
++------------------------+---------------------------+---------------------------+---------------------------+
+| Setup Complexity       | Complex (BGP knowledge    | Simple                    | Moderate                  |
+|                        | required)                 |                           |                           |
++------------------------+---------------------------+---------------------------+---------------------------+
+| IP Address Management  | IPAM with IP pools        | Simple host-subnet        | Distributed IPAM          |
+|                        |                           | allocation                |                           |
++------------------------+---------------------------+---------------------------+---------------------------+
+| Service Discovery      | Standard Kubernetes DNS   | Standard Kubernetes DNS   | Built-in DNS + K8s DNS    |
++------------------------+---------------------------+---------------------------+---------------------------+
+| Multi-tenancy          | Advanced policy engine    | Basic namespace           | Network segmentation      |
+|                        |                           | isolation                 |                           |
++------------------------+---------------------------+---------------------------+---------------------------+
+| Scalability            | Excellent (BGP routing)   | Good (limited by etcd)    | Good (mesh topology)      |
++------------------------+---------------------------+---------------------------+---------------------------+
+| Cross-subnet Support   | Native (BGP)              | Limited (requires         | Good (automatic           |
+|                        |                           | host-gw mode)             | discovery)                |
++------------------------+---------------------------+---------------------------+---------------------------+
+| Windows Support        | Yes                       | Limited                   | No                        |
++------------------------+---------------------------+---------------------------+---------------------------+
+| eBPF Support           | Yes (advanced features)   | No                        | No                        |
++------------------------+---------------------------+---------------------------+---------------------------+
+| Resource Usage         | Low to moderate           | Very low                  | Moderate to high          |
++------------------------+---------------------------+---------------------------+---------------------------+
+| Troubleshooting        | Complex (BGP knowledge)   | Simple                    | Moderate                  |
++------------------------+---------------------------+---------------------------+---------------------------+
+| Enterprise Features    | Calico Enterprise         | Limited                   | Weave Cloud (deprecated)  |
+|                        | (advanced security)       |                           |                           |
++------------------------+---------------------------+---------------------------+---------------------------+
+| IPv6 Support           | Full dual-stack           | Basic                     | Yes                       |
++------------------------+---------------------------+---------------------------+---------------------------+
+| Network Observability  | Flow logs, metrics        | Basic metrics             | Network map, metrics      |
++------------------------+---------------------------+---------------------------+---------------------------+
+| Maturity               | Very mature               | Mature                    | Mature                    |
++------------------------+---------------------------+---------------------------+---------------------------+
+| Best Use Cases         | - Large scale clusters    | - Simple deployments     | - Multi-cloud setups      |
+|                        | - Advanced security       | - Learning/development    | - Encryption required     |
+|                        | - Compliance requirements | - Resource constrained    | - Easy troubleshooting    |
+|                        | - Multi-cloud             |   environments            | - Legacy app support      |
++------------------------+---------------------------+---------------------------+---------------------------+
+| Vendor/Maintainer      | Tigera (formerly          | CoreOS/Red Hat            | Weaveworks                |
+|                        | Project Calico)           |                           |                           |
++------------------------+---------------------------+---------------------------+---------------------------+
+| OpenShift Support      | Yes (OVN-Kubernetes       | Limited                   | Third-party plugin        |
+|                        | uses Calico for policies) |                           |                           |
++------------------------+---------------------------+---------------------------+---------------------------+
+</pre>
+
+#### Key Recommendations:
+<pre>
+Choose Calico when:
+- You need advanced network policies and security
+- Running large-scale production clusters
+- Require compliance and audit capabilities
+- Have networking expertise in your team
+
+Choose Flannel when:
+- You want simplicity and ease of use
+- Running smaller or development clusters
+- Have limited networking requirements
+- Want minimal resource overhead
+
+Choose Weave when:
+- You need built-in encryption
+- Running multi-cloud deployments
+- Require good troubleshooting tools
+- Need automatic network discovery
+</pre>
