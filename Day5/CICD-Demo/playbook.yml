@@ -9,10 +9,10 @@
     shell: oc new-project cicd
 
   - name: Create our custom imagestream
-   shell: oc project cicd && oc apply -f imagestream.yml 
+    shell: oc project cicd && oc apply -f imagestream.yml 
 
   - name: Create the buildconfig in Openshift
-   shell: oc project cicd && oc apply -f buildconfig.yml 
+    shell: oc project cicd && oc apply -f buildconfig.yml 
 
   - name: Start the build
-   shell: oc project cicd && oc start-build spring-hello
+    shell: oc project cicd && oc start-build spring-hello
