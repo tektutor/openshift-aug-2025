@@ -318,3 +318,94 @@ Comparison
 |                  | Tools    | Tools         |                |
 +------------------+----------+---------------+----------------+  
 </pre>
+
+## Info - Openshift Weave Network Plugin
+<pre>
+- Weave Network Plugin in OpenShift
+  - Weave Network (Weave Net) is a Container Network Interface (CNI) plugin that 
+    can be used with OpenShift to provide networking between containers and pods across a cluster.
+- What is Weave Network?
+  - Weave Network creates a virtual network that connects Docker containers across multiple hosts 
+    and enables their automatic discovery. It provides:
+- Overlay Network: Creates a Layer 2 network overlay that spans multiple hosts
+- Automatic IP Management: Assigns IP addresses to containers automatically
+- Service Discovery: Built-in DNS-based service discovery
+- Network Segmentation: Support for network policies and microsegmentation
+- Key Features in OpenShift Context
+  1. Multi-Host Networking
+     - Connects pods across different OpenShift nodes
+     - Handles pod-to-pod communication seamlessly
+     - Supports both IPv4 and IPv6
+  2. Network Policies
+     - Implements Kubernetes NetworkPolicy resources
+     - Provides microsegmentation capabilities
+     - Allows traffic filtering between pods/namespaces
+  3. Encryption
+    - Optional encryption of inter-host traffic
+    - Uses NaCl crypto library for performance
+    - Helps secure pod communication across untrusted networks
+  4. Integration with OpenShift
+     - Works as a CNI plugin
+     - Integrates with OpenShift's Software Defined Networking (SDN)
+     - Compatible with OpenShift service mesh
+
+Architecture Components
+- Weave Router
+- Runs as a DaemonSet on each node
+- Handles packet forwarding and routing
+- Maintains network topology information
+- Weave Net Plugin
+  - CNI plugin that interfaces with container runtime
+  - Allocates IP addresses to pods
+  - Configures network interfaces
+  - IPAM (IP Address Management)
+  - Distributes IP address ranges across nodes
+  - Prevents IP conflicts
+  - Supports custom IP ranges  
+</pre>
+
+#### Usecases
+- Multi-cloud deployments where encryption is required
+- Strict network segmentation requirements
+- Legacy applications that need specific networking features
+- Development environments requiring flexible networking
+- Comparison with OpenShift SDN
+<pre>
++------------------------+---------------------------+---------------------------+
+| Feature                | Weave Network             | OpenShift SDN             |
++------------------------+---------------------------+---------------------------+
+| Overlay Technology     | VXLAN/UDP                 | VXLAN                     |
++------------------------+---------------------------+---------------------------+
+| Network Policies       | Full NetworkPolicy        | Limited (requires         |
+|                        | support                   | OVN-Kubernetes)           |
++------------------------+---------------------------+---------------------------+
+| Encryption             | Built-in optional         | Requires additional       |
+|                        | encryption                | setup                     |
++------------------------+---------------------------+---------------------------+
+| Performance            | Good, with encryption     | Optimized for OpenShift   |
+|                        | overhead                  |                           |
++------------------------+---------------------------+---------------------------+
+| Setup Complexity       | More complex setup        | Integrated, simpler       |
++------------------------+---------------------------+---------------------------+
+| IP Address Management  | Distributed IPAM          | Centralized IPAM          |
++------------------------+---------------------------+---------------------------+
+| Service Discovery      | Built-in DNS              | Standard Kubernetes DNS   |
++------------------------+---------------------------+---------------------------+
+| Multi-tenancy          | Network segmentation      | Project-based isolation   |
++------------------------+---------------------------+---------------------------+
+| Troubleshooting        | More complex due to       | Easier with OpenShift     |
+|                        | overlay networking        | tooling                   |
++------------------------+---------------------------+---------------------------+
+| Resource Consumption   | Higher (additional        | Lower (integrated)        |
+|                        | components)               |                           |
++------------------------+---------------------------+---------------------------+
+| Cross-cluster          | Native support            | Requires additional       |
+| Communication          |                           | configuration             |
++------------------------+---------------------------+---------------------------+
+| Monitoring & Logging   | External tools required   | Integrated with           |
+|                        |                           | OpenShift monitoring      |
++------------------------+---------------------------+---------------------------+
+| Support & Maintenance  | Community/Commercial      | Red Hat supported         |
+|                        | support                   |                           |
++------------------------+---------------------------+---------------------------+
+</pre>
