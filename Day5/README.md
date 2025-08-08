@@ -6,26 +6,26 @@ Flannel is a simple and easy way to configure a layer 3 network fabric designed 
 It provides networking for container clusters by creating a virtual network that spans across all nodes.
 
 Key Concepts
-Overlay Network
-Creates a virtual network layer on top of the existing host network
-Each node gets a subnet from a larger cluster network
-Pods can communicate across nodes using this overlay
-Network Backends
-VXLAN (Default)
+- Overlay Network
+- Creates a virtual network layer on top of the existing host network
+- Each node gets a subnet from a larger cluster network
+- Pods can communicate across nodes using this overlay
+- Network Backends
+- VXLAN (Default)
 
 Encapsulates packets in UDP
-Works across most network infrastructures
-Good performance with modern kernels
+- Works across most network infrastructures
+- Good performance with modern kernels
+
 Host-Gateway
+- Uses host routing tables
+- Better performance but requires Layer 2 connectivity
+- No packet encapsulation overhead
 
-Uses host routing tables
-Better performance but requires Layer 2 connectivity
-No packet encapsulation overhead
 UDP
-
-Legacy backend
-User-space packet forwarding
-Lower performance but maximum compatibility
+- Legacy backend
+- User-space packet forwarding
+- Lower performance but maximum compatibility
 </pre>
 
 Architecture
@@ -243,3 +243,78 @@ The ICMP reply follows the reverse path:
 # Pod1 receives the reply
 # 15:30:45.123490 IP 10.244.2.10 > 10.244.1.10: ICMP echo reply, id 1234, seq 1
 ```
+
+## Info - Calico Openshift Network Plugin
+<pre>
+- Calico Network in OpenShift
+- Calico is a popular Container Network Interface (CNI) plugin that provides networking and 
+  network security for containerized applications in OpenShift clusters.
+  What is Calico?
+  - Calico is an open-source networking solution that delivers:
+
+Pod-to-pod networking across nodes
+- Network policy enforcement for security
+- IP address management (IPAM)
+- Service mesh integration
+- Key Features in OpenShift
+  1. Pure Layer 3 Networking
+     - Uses standard IP routing instead of overlay networks
+     - Better performance with lower latency
+     - Simplified troubleshooting using standard networking tools
+  2. Network Policies
+     - Kubernetes-native network policies
+     - Advanced Calico network policies with additional features
+
+- Ingress and egress traffic control
+  - Application-layer policy enforcement
+- Scalability
+  - Supports thousands of nodes
+  - Efficient BGP routing protocols
+  - Distributed architecture without single points of failure
+- Security
+  - Workload isolation at the network level
+  - Encryption in transit
+  - Integration with service mesh security
+
+- Architecture Components
+  - Felix Agent
+    - Runs on each node as a DaemonSet
+    - Programs routing tables and iptables rules
+    - Handles network policy enforcement
+
+  - BGP Client (BIRD)
+    - Distributes routing information between nodes
+    - Maintains network topology
+    - Enables cross-node pod communication
+
+  - Calico Controller
+    - Watches Kubernetes API for network policy changes
+    - Translates policies into Felix-readable format
+    - Manages IP address allocation  
+
+- Common Use Cases
+  - Multi-tenant environments requiring strong network isolation  
+  - High-performance applications needing low network latency
+  - Hybrid cloud deployments with consistent networking policies
+  - Compliance requirements demanding network traffic control
+</pre>
+
+Comparison
+<pre>
++------------------+----------+---------------+----------------+
+| Feature          | Calico   | OpenShift SDN | OVN-Kubernetes |
++------------------+----------+---------------+----------------+
+| Performance      | High     | Medium        | Medium-High    |
+| Network Policies | Advanced | Basic         | Basic          |
+| Complexity       | Medium   | Low           | Medium         |
+| BGP Support      | Yes      | No            | No             |
+| Overlay Network  | Optional | Yes           | Yes            |
+| eBPF Support     | Yes      | No            | Limited        |
+| IPv6 Support     | Yes      | Limited       | Yes            |
+| Windows Support  | Yes      | No            | Yes            |
+| Encryption       | WireGuard| IPSec         | IPSec          |
+| IPAM             | Custom   | Built-in      | Built-in       |
+| Troubleshooting  | Standard | OpenShift     | OVN Tools      |
+|                  | Tools    | Tools         |                |
++------------------+----------+---------------+----------------+  
+</pre>
