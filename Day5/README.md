@@ -802,3 +802,38 @@ oc new-app --name=hello registry.access.redhat.com/ubi8/openjdk-17~https://githu
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/fcd27cf2-4482-4222-9e17-45463432a32c" />
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/d8cbfd2e-4f35-4882-970d-16cdc8cfc38a" />
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/39c51fbe-3fb3-4e20-8c6f-8d6e4a8a00f7" />
+
+## Demo - CI/CD Demo
+
+Download Jenkins
+```
+cd ~
+wget https://get.jenkins.io/war-stable/2.516.1/jenkins.war
+```
+
+Launch Jenkins CI Build Server ( You won't be able to use the terminal where you launched jenkins, you could use different terminal window/tab )
+```
+java -jar ./jenkins.war
+```
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/de0845c9-4327-44a7-92b1-939be7219b98" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/fb5da3c1-8e7e-4399-b5b5-a722c836a425" />
+
+You may access the Jenkins dashboard from chrome web browser
+```
+http://localhost:8080
+```
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/1fe1515d-8b09-45bd-9d56-e4fedf373476" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/f477d98c-15f1-4734-9c02-24e8a99e75bb" />
+Click "Continue" button
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/65971040-df7c-40e3-8c08-2551afd890c8" />
+Click "Install suggested plugins"
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/43814c3d-9426-4bb1-ab69-637ae717ec79" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/a85a9f39-743d-4125-acc9-21ae3b6131be" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/32fde0d5-2f8a-45be-9fcc-3606654453ce" />
+Make sure you create an admin user
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/541b515f-56eb-4fc5-b0e1-513ab67bb2a7" />
+Click "Save and Finish"
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/2d9a19a2-f9af-4c98-8452-636878bb8db9" />
+Click "Start using Jenkins"
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/41bacd85-0518-435d-9957-f83351521760" />
+
