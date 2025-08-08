@@ -5,7 +5,7 @@ import org.apache.activemq.artemis.jms.client.ActiveMQConnectionFactory;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class JmsProducerContinuous {
+public class JmsProducer {
     public static void main(String[] args) throws Exception {
         // Use internal service for in-cluster communication
         String brokerUrl = "tcp://amq-broker-core-0-svc:61616";
