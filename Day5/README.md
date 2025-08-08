@@ -789,3 +789,11 @@ oc new-app --name=hello https://github.com/tektutor/spring-ms.git --strategy=doc
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/39d340e5-b52b-4fdd-ba42-f633e6453a01" />
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/f63a0ede-6532-43b2-a0f3-97dd22828a73" />
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/276b53ea-ed03-4837-a440-2db1febc5bc4" />
+
+## Lab - Deploying your application into Openshift using S2I source strategy
+```
+oc delete project jegan
+oc new-project jegan
+
+oc new-app --name=hello registry.access.redhat.com/ubi8/openjdk-17~https://github.com/tektutor/spring-ms.git --strategy=source
+```
