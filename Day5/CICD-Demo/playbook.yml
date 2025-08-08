@@ -16,3 +16,6 @@
 
   - name: Start the build
     shell: oc project cicd && oc start-build spring-hello
+
+  - name: Deploy the hello application into openshift
+    shell: ./deploy.sh 
