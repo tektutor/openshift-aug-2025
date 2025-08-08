@@ -620,7 +620,7 @@ spec:
     spec:
       containers:
       - name: jms-app
-        image: your-registry/jms-app:latest
+        image: image-registry.openshift-image-registry.svc:5000/jms-app:latest
         ports:
         - containerPort: 8080
         volumeMounts:
