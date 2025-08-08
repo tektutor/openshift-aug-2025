@@ -1,5 +1,13 @@
 # Day 5
 
+## Info - LDAP Integration with Openshift
+<pre>
+- You can now login to our Openshift webconsole with your linux user name
+- Password is palmeto@123
+- In case you prefer using kubeadmin as usual you can continue using the same credential
+</pre>  
+
+
 ## Flannel Network Model
 <pre>
 Flannel is a simple and easy way to configure a layer 3 network fabric designed for Kubernetes. 
