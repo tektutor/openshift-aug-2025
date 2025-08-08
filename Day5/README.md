@@ -797,3 +797,8 @@ oc new-project jegan
 
 oc new-app --name=hello registry.access.redhat.com/ubi8/openjdk-17~https://github.com/tektutor/spring-ms.git --strategy=source
 ```
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/d6393095-ffb5-444a-beb5-37dac442e758" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/b8f54331-dc35-4bd2-9472-10d7b474e680" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/fcd27cf2-4482-4222-9e17-45463432a32c" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/d8cbfd2e-4f35-4882-970d-16cdc8cfc38a" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/39c51fbe-3fb3-4e20-8c6f-8d6e4a8a00f7" />
