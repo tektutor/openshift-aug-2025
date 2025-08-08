@@ -2,7 +2,8 @@
 
 ## Flannel Network Model
 <pre>
-Flannel is a simple and easy way to configure a layer 3 network fabric designed for Kubernetes. It provides networking for container clusters by creating a virtual network that spans across all nodes.
+Flannel is a simple and easy way to configure a layer 3 network fabric designed for Kubernetes. 
+It provides networking for container clusters by creating a virtual network that spans across all nodes.
 
 Key Concepts
 Overlay Network
