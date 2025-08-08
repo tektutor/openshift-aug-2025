@@ -1,0 +1,18 @@
+name: This playbook will create a buildconfig in openshift and starts the build
+hosts: localhost
+tasks:
+- name: Delete cicd project in openshift
+  shell: oc delete project cicd
+  ignore_errors: yes
+
+- name: Let's create a project in Openshift
+  shell: oc new-project cicd
+
+- name: Create our custom imagestream
+  shell: oc project cicd && oc apply -f imagestream.yml 
+
+- name: Create the buildconfig in Openshift
+  shell: oc project cicd && oc apply -f buildconfig.yml 
+
+- name: Start the build
+  shell: oc project cicd && oc start-build spring-hello
