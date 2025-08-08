@@ -837,3 +837,6 @@ Click "Save and Finish"
 Click "Start using Jenkins"
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/41bacd85-0518-435d-9957-f83351521760" />
 
+Create a Job, select "Freestyle Job"
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/9d597891-bccb-4763-acf9-383e2f2d23c6" />
+
