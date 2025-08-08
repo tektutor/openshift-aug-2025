@@ -839,4 +839,31 @@ Click "Start using Jenkins"
 
 Create a Job, select "Freestyle Job"
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/9d597891-bccb-4763-acf9-383e2f2d23c6" />
+Click "Ok"
+
+In Source Code Management Section, select "Git"
+<pre>
+Reposistory url - https://github.com/tektutor/openshift-aug-2025.git
+Branches to Build - */main
+</pre>
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/91cab130-1248-4124-97ac-d7b708af655a" />
+
+In Triggers section,
+<pre>
+Select "Poll SCM"
+Schedule "H/02 * * * *"
+</pre>
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/0ae17124-a096-4859-8e70-246fc5a33403" />
+
+In Build Steps section,
+<pre>
+Click "Add Build Step"
+Select "Execute Shell" 
+</pre>
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/2e5db47d-3913-49a2-8a60-7bb51c0baba5" />
+
+Click "Save"
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/c007ec17-6e6d-4954-bff9-ffba6d4403b6" />
+
+
 
