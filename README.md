@@ -1,6 +1,6 @@
 # Openshift August 2025 ( Advanced Containerization )
 
-For training enquiries or if you wish to hire as an external consultant, you may reach out to me 
+For training enquiries or if you wish to hire me as an external consultant for your project, you may reach out to me 
 <pre>
 jegan@tektutor.org
 +91 822-000-5626
