@@ -793,7 +793,7 @@ Key Uses of JMS
 1. Asynchronous Communication
    - Applications can send messages without waiting for immediate responses
    - Decouples sender and receiver - they don't need to be online simultaneously
-   0 Improves application responsiveness and scalability
+   - Improves application responsiveness and scalability
  
 2. Microservices Integration
    - Enables communication between different microservices
