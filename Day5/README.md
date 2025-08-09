@@ -788,7 +788,7 @@ Click "Save"
 What is JMS (Java Message Service)?
 - JMS is a Java API that allows applications to create, send, receive, and read messages. 
 - It provides a way for Java applications to communicate asynchronously through messaging.
-- In this example, we will be using Apache ActiveMQ Artemis to support 
+- In this example, we will be using Apache ActiveMQ Artemis to support JMS
 
 About Apache ActiveMQ Artemis 
 - is a high-performance, enterprise-grade message broker that implements 
