@@ -790,6 +790,31 @@ What is JMS (Java Message Service)?
 - It provides a way for Java applications to communicate asynchronously through messaging.
 - In this example, we will be using Apache ActiveMQ Artemis to support 
 
+About Apache ActiveMQ Artemis 
+- is a high-performance, enterprise-grade message broker that implements 
+  the Java Message Service (JMS) 2.0 specification. 
+- it is the next-generation message broker from the Apache ActiveMQ project, 
+  built from the ground up for high performance and scalability.
+- Key Features
+  - High Performance
+  - Non-blocking I/O architecture
+  - Zero-copy message handling
+  - Handles millions of messages per second
+  - Low latency message delivery
+  - Efficient memory management
+- Enterprise Grade
+  - ACID transactions support
+  - High Availability with clustering
+  - Message persistence to disk
+  - Security integration (JAAS, LDAP, SSL/TLS)
+  - Management console and JMX monitoring
+- Protocol Support
+ - JMS 1.1 & 2.0 (primary)
+ - AMQP 1.0 (Advanced Message Queuing Protocol)
+ - STOMP (Simple Text Oriented Messaging Protocol)
+ - MQTT (Message Queuing Telemetry Transport)
+ - OpenWire (ActiveMQ Classic compatibility)
+  
 Key Uses of JMS
 1. Asynchronous Communication
    - Applications can send messages without waiting for immediate responses
