@@ -951,3 +951,13 @@ oc logs -f jms-consumer-78d69685d9-hcnk8
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/ba7a0317-da73-47a1-bda6-a92ac1dd64c8" />
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/e028120d-d0cf-43c3-bd15-a392b35fbab9" />
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/83a3bccf-8096-46d2-aa2b-8ab03103bd6f" />
+
+You can also check the JMS Producer and Consumer logs from Openshift webconsole
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/fcb53481-de45-4e51-b03e-ce54c067597d" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/1596ea2a-6b0d-40b3-80b6-742c300a6e67" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/187682b6-18f9-4339-97cd-195f1a7b4d31" />
+
+
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/8c9b7ee0-6f51-420b-b4bb-1703cc887c1d" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/9d424ed8-fd97-4fc2-a4e2-1d5212b6c713" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/a22f1aa2-9f9e-4169-b50a-cf53a1d1aefa" />
