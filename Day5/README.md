@@ -600,55 +600,6 @@ data:
         com.example.jms: DEBUG  
 </pre>
 
-Deploy JMS application - application/deployment.yaml
-<pre>
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: jms-app
-  namespace: jms-demo
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: jms-app
-  template:
-    metadata:
-      labels:
-        app: jms-app
-    spec:
-      containers:
-      - name: jms-app
-        image: image-registry.openshift-image-registry.svc:5000/jms-app:latest
-        ports:
-        - containerPort: 8080
-        volumeMounts:
-        - name: config
-          mountPath: /app/config
-        env:
-        - name: SPRING_CONFIG_LOCATION
-          value: /app/config/application.yml
-      volumes:
-      - name: config
-        configMap:
-          name: jms-app-config  
-</pre>
-
-JMS application Service - application/service.yaml
-<pre>
-apiVersion: v1
-kind: Service
-metadata:
-  name: jms-app-service
-  namespace: jms-demo
-spec:
-  selector:
-    app: jms-app
-  ports:
-  - port: 8080
-    targetPort: 8080
-  type: ClusterIP  
-</pre>
 
 
 Installation script
@@ -679,50 +630,16 @@ echo "3. Creating queues and topics..."
 oc apply -f queues/order-queue.yaml
 oc apply -f queues/notification-topic.yaml
 
-# Step 4: Deploy application
-echo "4. Deploying JMS application..."
-oc apply -f application/configmap.yaml
-oc apply -f application/deployment.yaml
-oc apply -f application/service.yaml
-
 echo "=== Installation Complete ==="
 echo "Check status with: oc get pods -n jms-demo"
 echo "View AMQ Console: oc get route amq-broker-wconsj-0-svc-rte -n jms-demo"  
 </pre>
 
-Verification script
-<pre>
-#!/bin/bash
-
-echo "=== Verifying JMS Installation ==="
-
-echo "1. Checking operator installation..."
-oc get csv -n openshift-operators | grep amq-broker
-
-echo "2. Checking broker status..."
-oc get activemqartemis -n jms-demo
-
-echo "3. Checking broker pods..."
-oc get pods -n jms-demo | grep amq-broker
-
-echo "4. Checking queues and topics..."
-oc get activemqartemisaddress -n jms-demo
-
-echo "5. Checking application pods..."
-oc get pods -n jms-demo | grep jms-app
-
-echo "6. Checking services..."
-oc get svc -n jms-demo
-
-echo "=== Verification Complete ==="  
-</pre>
-
 
 Make the script executable
 ```
-chmod +x install.sh verify.sh
+chmod +x install.sh
 ./install.sh
-./verify.sh
 
 # Access AMQ Console
 oc get routes -n jms-demo
