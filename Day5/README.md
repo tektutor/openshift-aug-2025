@@ -812,6 +812,12 @@ Key Uses of JMS
 </pre>
 
 I have already installed Red Hat Integration - AMQ Broker for RHEL(mutiarch) Operator required for this exercise under jms-demo project. Hence, you don't have to install it.
+Login Credentials
+<pre>
+username : jegan
+password : root@123
+</pre>
+
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/5bb75173-d256-49e6-b589-af0255c8a850" />
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/6ec442b1-709e-4f28-babf-4e810575b677" />
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/978828a7-d95a-41f1-abca-145fb9563f83" />
