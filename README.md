@@ -1,18 +1,9 @@
-
 # Openshift August 2025 ( Advanced Containerization )
 
-## Ubuntu Server 1 ( 192.168.10.200 )
-![Server1](server1.png)
-
-## Ubuntu Server 2 ( 192.168.10.201 )
-![Server2](server2.png)
-
-## Pre Assessment ( Kindly complete the pre-test from your Lab machine )
+For training enquiries or if you wish to hire as an external consultant, you may reach out to me 
 <pre>
-https://forms.office.com/r/LrrrFxGwNp
-</pre>
+jegan@tektutor.org
++91 822-000-5626
 
-<pre>
-- Once you complete the pre-test notify me
-- Once everyone completes the pre-test we will start the training
+Website - https://www.tektutor.org
 </pre>
