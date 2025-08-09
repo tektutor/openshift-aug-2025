@@ -1,22 +1,11 @@
 # Day 5
 
-## Post Assessment
-<pre>
-https://forms.office.com/r/8gmCZtFd6A
-</pre>
- 
-## Feedback Link
-<pre>
-https://forms.office.com/r/a2DpscVA1w
-</pre>
-
 ## Info - LDAP Integration with Openshift
 <pre>
 - You can now login to our Openshift webconsole with your linux user name
 - Password is palmeto@123
 - In case you prefer using kubeadmin as usual you can continue using the same credential
 </pre>  
-
 
 ## Flannel Network Model
 <pre>
@@ -876,4 +865,80 @@ Click "Save"
 <img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/c007ec17-6e6d-4954-bff9-ffba6d4403b6" />
 
 
+## Lab - JMS Producer and JMS Consumer
 
+<pre>
+What is JMS (Java Message Service)?
+- JMS is a Java API that allows applications to create, send, receive, and read messages. 
+- It provides a way for Java applications to communicate asynchronously through messaging.
+
+Key Uses of JMS
+1. Asynchronous Communication
+   - Applications can send messages without waiting for immediate responses
+   - Decouples sender and receiver - they don't need to be online simultaneously
+   0 Improves application responsiveness and scalability
+ 
+2. Microservices Integration
+   - Enables communication between different microservices
+   - Services can operate independently and communicate via messages
+   - Supports event-driven architecture patterns
+ 
+3. Enterprise Application Integration (EAI)
+  - Connects different enterprise systems and applications
+  - Enables legacy system integration with modern applications 
+  - Facilitates data exchange between heterogeneous systems
+ 
+4. Load Distribution and Scalability
+   - Distributes workload across multiple consumers
+   - Supports horizontal scaling by adding more message consumers
+   - Handles traffic spikes through message queuing
+</pre>
+
+I have already installed Red Hat Integration - AMQ Broker for RHEL(mutiarch) Operator required for this exercise under jms-demo project. Hence, you don't have to install it.
+
+You can run the application from your project namespace.
+
+```
+oc delete project jegan
+oc new-project jegan
+
+# Deploy your JMS producer application
+oc new-app java:openjdk-17-ubi8~https://github.com/tektutor/openshift-aug-2025.git \
+  --context-dir=Day5/jms-demo/producer \
+  --name=jms-producer
+
+# Check the S2I source strategy build progress, wait until it reports Image pushed successfully
+oc logs -f bc/jms-producer
+
+# Wait until your jms-producer starts running
+oc get pods
+
+# You can check the logs of your JMS Producer
+oc logs -f jms-producer-586c48df6f-9rvwj
+```
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/3a34748f-2222-4af3-9a4b-b5d0ecafe60e" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/634ecd60-6fdb-4aef-9510-995bd32db4ef" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/ab5e502e-430d-4dbc-b325-077c2280d887" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/69c408d7-584c-44ed-9cb2-2acbf13fc0fe" />
+
+In a different terminal window/tab, try this
+```
+oc project jegan
+
+oc new-app java:openjdk-17-ubi8~https://github.com/tektutor/openshift-aug-2025.git \
+  --context-dir=Day5/jms-demo/consumer \
+  --name=jms-consumer
+
+# Check the S2I source strategy build status, wait until you see Image Pushed successfully message
+oc logs -f bc/jms-consumer
+
+# Wait until your jms-producer starts running
+oc get pods
+
+oc logs -f jms-consumer-78d69685d9-hcnk8
+```
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/e3ca3b17-60ec-40b4-a9de-d020b088cf2e" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/ec26309f-a064-4dbb-86a7-4a0ec7aea90b" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/ba7a0317-da73-47a1-bda6-a92ac1dd64c8" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/e028120d-d0cf-43c3-bd15-a392b35fbab9" />
+<img width="1920" height="1168" alt="image" src="https://github.com/user-attachments/assets/83a3bccf-8096-46d2-aa2b-8ab03103bd6f" />
