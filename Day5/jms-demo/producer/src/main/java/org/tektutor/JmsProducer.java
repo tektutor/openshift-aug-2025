@@ -7,8 +7,8 @@ import java.time.format.DateTimeFormatter;
 
 public class JmsProducer {
     public static void main(String[] args) throws Exception {
-        // Use internal service for in-cluster communication
-        String brokerUrl = "tcp://amq-broker-core-0-svc:61616";
+	// Use fully qualified service name for cross-namespace communication
+        String brokerUrl = "tcp://amq-broker-core-0-svc.jms-demo.svc.cluster.local:61616";
         String user = System.getenv("AMQ_USER");
         String password = System.getenv("AMQ_PASSWORD");
 

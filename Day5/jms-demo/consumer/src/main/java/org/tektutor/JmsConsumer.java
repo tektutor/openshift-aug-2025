@@ -5,8 +5,8 @@ import org.apache.activemq.artemis.jms.client.ActiveMQConnectionFactory;
 
 public class JmsConsumer {
     public static void main(String[] args) throws Exception {
-        // Use internal service name for in-cluster communication
-        String brokerUrl = "tcp://amq-broker-core-0-svc:61616";
+	// Use fully qualified service name for cross-namespace communication
+	String brokerUrl = "tcp://amq-broker-core-0-svc.jms-demo.svc.cluster.local:61616";
         String user = System.getenv("AMQ_USER");
         String password = System.getenv("AMQ_PASSWORD");
 
